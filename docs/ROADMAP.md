@@ -4,8 +4,7 @@
 
 - Replace fixed boot delays with monotonic deadlines and decoded TD errors.
 - Support multiple queue heads and reusable control-transfer construction.
-- Enumerate both UHCI root ports without returning after the first device.
-- Add hub traversal, hot-plug state, device removal, and address allocation.
+- Extend one-level hub traversal to nested hubs and add hot-plug, device removal, and address reuse.
 - Build interrupt and isochronous transfer APIs.
 - Add typematic keyboard repeat, lock-key LEDs, wheel/extra-button handling, and a general HID report-descriptor parser.
 - Add USB mass-storage transport after a block-device API exists.

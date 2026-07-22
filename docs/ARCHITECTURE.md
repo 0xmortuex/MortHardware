@@ -50,7 +50,9 @@ HID keyboard reports are translated from USB usage IDs to XT set-1 make codes so
 
 HID boot-mouse reports publish signed relative X/Y movement and left/right/middle button bits. The reusable framebuffer example saves the pixels below a 12×18 cursor before drawing it and restores them before movement. MortOS additionally routes left clicks to launcher tiles and Settings sections.
 
-The current implementation enumerates one device on the first active root port and polls completion using bounded delays. It has no hub traversal, scheduler concurrency, hot-plug state machine, general HID report parser, or general class-driver transfer layer yet.
+The current implementation enumerates both UHCI root ports into an eight-entry address/device table. A class-9 hub is configured through its hub descriptor, port power, port status, reset, and change-feature requests; connected downstream devices receive their own addresses. Keyboard and mouse bindings retain independent addresses, endpoints, speed flags, and data toggles.
+
+Hub traversal is currently one level deep. Transfer completion is polled using bounded delays, and there is no scheduler concurrency, hot-plug/removal state machine, general HID report parser, or general class-driver transfer layer yet.
 
 ## Bluetooth USB HCI
 

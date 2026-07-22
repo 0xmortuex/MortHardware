@@ -13,14 +13,14 @@ This repository records the hardware-support work built for MortOS and provides 
 | PCI | Configuration mechanism #1, bus 0 scan, all 32 slots and 8 functions | QEMU PCI topology | Working |
 | Ethernet | RTL8139 discovery, reset, MAC read, DMA TX, RX ring, frame transmit/receive | QEMU `rtl8139` | Working |
 | Audio | Intel 82801AA AC'97 discovery, mixer volume, 48 kHz PCM-out DMA, test tone | QEMU `AC97` | Working |
-| USB | UHCI discovery/reset, addressing, descriptors, endpoint parsing, and `SET_CONFIGURATION` | QEMU `usb-tablet`, `usb-kbd` | Working foundation |
+| USB | UHCI discovery/reset, per-device addressing, descriptors, endpoint parsing, hubs, downstream ports, and configuration | QEMU keyboard + hub + mouse topology | Working foundation |
 | USB HID | Boot keyboard and mouse reports, interrupt-IN polling, key translation, signed pointer movement, and three buttons | QEMU `usb-kbd`, `usb-mouse` | Working |
 | USB classes | Interface class/subclass/protocol and interrupt/bulk endpoint detection | USB HID devices | Working |
 | PC speaker | PIT channel 2 tone generation and gate control | Legacy PC speaker interface | Working |
 | Wi-Fi | PCI capability detection only | PCI class scan | Driver not implemented |
 | Bluetooth | USB class/endpoint discovery, HCI command transport, Reset command, Command Complete validation | Mort compiler + no-device regressions | Needs controller verification |
 
-“Working foundation” for USB means the host controller can enumerate and configure one root-port device, and a HID boot keyboard can provide input. It does not yet mean hubs, hot-plug, arbitrary HID report descriptors, mass storage, or Bluetooth traffic are supported.
+“Working foundation” for USB means the host controller can enumerate both root ports, configure hubs and downstream devices, and operate a boot keyboard and mouse simultaneously. It does not yet mean hot-plug, arbitrary HID report descriptors, mass storage, or Bluetooth traffic are complete.
 
 ## Repository layout
 

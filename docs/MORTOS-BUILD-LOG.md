@@ -13,6 +13,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`8db9d6b`](https://github.com/0xmortuex/MortOS/commit/8db9d6b) | Added USB `SET_CONFIGURATION`, endpoint discovery, HID boot-protocol selection, interrupt-IN polling, usage-to-scancode translation, and working USB keyboard input. |
 | [`8268e3e`](https://github.com/0xmortuex/MortOS/commit/8268e3e) | Added HID boot-mouse reports, signed pointer movement, button state, a framebuffer cursor, launcher tile clicks, and Settings section clicks. |
 | [`5866840`](https://github.com/0xmortuex/MortOS/commit/5866840) | Added Bluetooth USB class/endpoint discovery, HCI Reset control transport, Command Complete validation, and honest Detected/Reset sent/Ready Settings states. |
+| [`d853628`](https://github.com/0xmortuex/MortOS/commit/d853628) | Added per-device USB addresses, an eight-entry device table, both UHCI root ports, one-level hub power/reset/status enumeration, and simultaneous keyboard/mouse bindings. |
 
 ## Demonstrated results
 
@@ -21,6 +22,7 @@ This is the public implementation record for the hardware work integrated into M
 - UHCI enumerated QEMU's USB tablet as one device, read VID/PID `0627:0001`, and identified USB interface class `3` (HID).
 - QEMU's USB keyboard configured as class/protocol `3/1`, navigated the graphical desktop, and entered a working terminal command through UHCI reports.
 - QEMU's USB mouse moved a live framebuffer cursor and opened Settings by clicking its launcher tile.
+- A combined QEMU topology enumerated keyboard, class-9 hub, and downstream mouse as three devices; keyboard navigation and mouse selection worked during the same boot.
 - MortOS remained responsive in the graphical launcher and Settings app after boot-time USB enumeration.
 
 ## What this does not claim
