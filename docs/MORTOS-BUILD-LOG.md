@@ -22,6 +22,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`84581ca`](https://github.com/0xmortuex/MortOS/commit/84581ca) | Removed QEMU-specific routing assumptions: DHCP now records subnet mask, gateway and DNS options, while Vex performs subnet-aware ARP routing through the leased gateway. |
 | [`d8cae3c`](https://github.com/0xmortuex/MortOS/commit/d8cae3c) | Added Content-Type-aware HTML/plain-text rendering, safe rejection of unsupported binary media, and expanded the native browser regression to 21 assertions. |
 | [`07a7820`](https://github.com/0xmortuex/MortOS/commit/07a7820) | Connected the existing Mort USB/PS2 pointer path to Vex tabs, new-tab control, navigation buttons, address bar, history, bookmarks and extracted-link rows. |
+| [`10f4d73`](https://github.com/0xmortuex/MortOS/commit/10f4d73) | Added an end-to-end QEMU check that enumerates a USB mouse, moves the live MortOS pointer, clicks Vex's new-tab control, and verifies the tab state change. |
 
 ## Demonstrated results
 
@@ -38,6 +39,7 @@ This is the public implementation record for the hardware work integrated into M
 - The combined shell, USB, Settings, and browser verification completed 41/41 assertions on the documented tree.
 - The portable-route browser regression completed 19/19 assertions, including validation of the router and DNS values delivered by DHCP.
 - Content handling completed 21/21 browser assertions, including literal plain text, chunked HTML, and binary-response rejection.
+- The USB-mouse browser pass completed 22/22 assertions with an actual pointer-driven toolbar click.
 
 ## What this does not claim
 
