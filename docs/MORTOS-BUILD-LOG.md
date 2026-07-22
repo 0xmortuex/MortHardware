@@ -20,6 +20,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`8785757`](https://github.com/0xmortuex/MortOS/commit/8785757) | Replaced the local Vex mock-up with a native Mort browser using DHCP, DNS, ARP, TCP and HTTP, including tabs, history, bookmarks, links, redirects, private mode and downloads. |
 | [`1db04ca`](https://github.com/0xmortuex/MortOS/commit/1db04ca) | Added private local address suggestions, HTTP/1.1 chunked-transfer decoding, public Settings/browser architecture guides, and a 17-assertion end-to-end browser regression. |
 | [`84581ca`](https://github.com/0xmortuex/MortOS/commit/84581ca) | Removed QEMU-specific routing assumptions: DHCP now records subnet mask, gateway and DNS options, while Vex performs subnet-aware ARP routing through the leased gateway. |
+| [`d8cae3c`](https://github.com/0xmortuex/MortOS/commit/d8cae3c) | Added Content-Type-aware HTML/plain-text rendering, safe rejection of unsupported binary media, and expanded the native browser regression to 21 assertions. |
 
 ## Demonstrated results
 
@@ -35,6 +36,7 @@ This is the public implementation record for the hardware work integrated into M
 - Vex loaded a host-served page through the guest RTL8139 path, followed a relative link and redirect, decoded a chunked response, and preserved browser state across reboot.
 - The combined shell, USB, Settings, and browser verification completed 41/41 assertions on the documented tree.
 - The portable-route browser regression completed 19/19 assertions, including validation of the router and DNS values delivered by DHCP.
+- Content handling completed 21/21 browser assertions, including literal plain text, chunked HTML, and binary-response rejection.
 
 ## What this does not claim
 
