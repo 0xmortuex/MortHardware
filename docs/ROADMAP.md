@@ -7,7 +7,7 @@
 - Enumerate both UHCI root ports without returning after the first device.
 - Add hub traversal, hot-plug state, device removal, and address allocation.
 - Build interrupt and isochronous transfer APIs.
-- Add typematic keyboard repeat, lock-key LEDs, HID boot-pointer input, and a general HID report-descriptor parser.
+- Add typematic keyboard repeat, lock-key LEDs, wheel/extra-button handling, and a general HID report-descriptor parser.
 - Add USB mass-storage transport after a block-device API exists.
 
 ## Bluetooth

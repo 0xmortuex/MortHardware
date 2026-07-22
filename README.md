@@ -14,7 +14,7 @@ This repository records the hardware-support work built for MortOS and provides 
 | Ethernet | RTL8139 discovery, reset, MAC read, DMA TX, RX ring, frame transmit/receive | QEMU `rtl8139` | Working |
 | Audio | Intel 82801AA AC'97 discovery, mixer volume, 48 kHz PCM-out DMA, test tone | QEMU `AC97` | Working |
 | USB | UHCI discovery/reset, addressing, descriptors, endpoint parsing, and `SET_CONFIGURATION` | QEMU `usb-tablet`, `usb-kbd` | Working foundation |
-| USB HID | Boot-keyboard protocol, interrupt-IN polling, modifiers, navigation keys, function keys, and text entry | QEMU `usb-kbd` | Working |
+| USB HID | Boot keyboard and mouse reports, interrupt-IN polling, key translation, signed pointer movement, and three buttons | QEMU `usb-kbd`, `usb-mouse` | Working |
 | USB classes | Interface class/subclass/protocol and interrupt/bulk endpoint detection | USB HID devices | Working |
 | PC speaker | PIT channel 2 tone generation and gate control | Legacy PC speaker interface | Working |
 | Wi-Fi | PCI capability detection only | PCI class scan | Driver not implemented |
@@ -67,7 +67,9 @@ ac97_init();      // optional audio
 usb_boot_init();  // before enabling interrupts in the current implementation
 ```
 
-For a configured HID boot keyboard, call `usb_hid_poll_scancode()` from a periodic kernel tick and route each non-zero set-1 make code to the host input dispatcher. The companion globals `g_usb_hid_shift` and `g_usb_hid_extended` describe modifiers and extended navigation keys. MortOS polls at 100 Hz.
+For a configured HID boot keyboard, call `usb_hid_poll_scancode()` from a periodic kernel tick and route each non-zero set-1 make code to the host input dispatcher. The companion globals `g_usb_hid_shift` and `g_usb_hid_extended` describe modifiers and extended navigation keys. For a boot mouse, call `usb_hid_poll_mouse()` and consume `g_usb_mouse_dx`, `g_usb_mouse_dy`, and `g_usb_mouse_buttons`. MortOS polls at 100 Hz.
+
+`examples/framebuffer_mouse.mx` is a Mort-only 32-bpp cursor adapter with background save/restore. MortOS extends it with launcher-tile and Settings-section clicks.
 
 See [examples/boot.mx](examples/boot.mx) for a fuller example and [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for ownership and data flow.
 

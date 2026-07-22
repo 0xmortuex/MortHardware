@@ -61,3 +61,5 @@ The early drivers use bounded spin delays. A port should replace these with mono
 ## 8. Route HID keyboard events
 
 Call `usb_hid_poll_scancode()` from a periodic tick after `usb_boot_init()` has configured a HID boot keyboard. A non-zero return value is an XT set-1 make code. Read `g_usb_hid_shift` and `g_usb_hid_extended` before dispatching it. The polling function only reports newly pressed keys; key releases, typematic repeat, and LED output remain host work.
+
+For HID boot mice, call `usb_hid_poll_mouse()`. A successful poll updates signed `g_usb_mouse_dx`/`g_usb_mouse_dy` and the standard three low button bits in `g_usb_mouse_buttons`. See `examples/framebuffer_mouse.mx` for cursor rendering; hide the cursor before repainting any underlying UI region, then show it again afterward.

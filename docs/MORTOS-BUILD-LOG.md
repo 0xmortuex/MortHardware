@@ -11,6 +11,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`111c4ac`](https://github.com/0xmortuex/MortOS/commit/111c4ac) | Added minimal freestanding `memset`, `memcpy`, and `memmove` primitives required by optimized kernel builds. |
 | [`48a2c0d`](https://github.com/0xmortuex/MortOS/commit/48a2c0d) | Added boot-time UHCI ownership, root-port enumeration, USB address assignment, device/configuration descriptors, VID/PID, and interface class reporting in Settings. |
 | [`8db9d6b`](https://github.com/0xmortuex/MortOS/commit/8db9d6b) | Added USB `SET_CONFIGURATION`, endpoint discovery, HID boot-protocol selection, interrupt-IN polling, usage-to-scancode translation, and working USB keyboard input. |
+| [`8268e3e`](https://github.com/0xmortuex/MortOS/commit/8268e3e) | Added HID boot-mouse reports, signed pointer movement, button state, a framebuffer cursor, launcher tile clicks, and Settings section clicks. |
 
 ## Demonstrated results
 
@@ -18,6 +19,7 @@ This is the public implementation record for the hardware work integrated into M
 - AC'97 initialized and accepted a 48 kHz PCM test-tone buffer.
 - UHCI enumerated QEMU's USB tablet as one device, read VID/PID `0627:0001`, and identified USB interface class `3` (HID).
 - QEMU's USB keyboard configured as class/protocol `3/1`, navigated the graphical desktop, and entered a working terminal command through UHCI reports.
+- QEMU's USB mouse moved a live framebuffer cursor and opened Settings by clicking its launcher tile.
 - MortOS remained responsive in the graphical launcher and Settings app after boot-time USB enumeration.
 
 ## What this does not claim

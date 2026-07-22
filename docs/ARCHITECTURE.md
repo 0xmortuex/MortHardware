@@ -48,6 +48,8 @@ The current boot sequence is:
 
 HID keyboard reports are translated from USB usage IDs to XT set-1 make codes so an existing PS/2-style kernel dispatcher can consume both input paths. New key presses, Shift modifiers, arrows, editing keys, and F1–F12 are supported; typematic repeat and LED output are not yet implemented.
 
+HID boot-mouse reports publish signed relative X/Y movement and left/right/middle button bits. The reusable framebuffer example saves the pixels below a 12×18 cursor before drawing it and restores them before movement. MortOS additionally routes left clicks to launcher tiles and Settings sections.
+
 The current implementation enumerates one device on the first active root port and polls completion using bounded delays. It has no hub traversal, scheduler concurrency, hot-plug state machine, general HID report parser, or general class-driver transfer layer yet.
 
 ## PC speaker

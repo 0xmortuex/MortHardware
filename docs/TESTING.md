@@ -10,6 +10,7 @@ The initial drivers were verified on 22 July 2026 with QEMU 11.0.50 on an x86 fr
 | AC'97 | `-device AC97` | Controller reports ready; PCM test submission succeeds |
 | UHCI + HID | `-usb -device usb-tablet` | One USB device, descriptor ready, VID 1575, PID 1, interface class 3 |
 | UHCI keyboard | `-usb -device usb-kbd` | Device configured, class/protocol `3/1`; keyboard navigates Settings and enters `echo usb-ok` |
+| UHCI mouse | `-usb -device usb-mouse` | Device configured as HID boot mouse; relative movement draws a cursor and a left click opens Settings |
 
 The VID/PID values above are decimal values shown by MortOS Settings. In hexadecimal they are `0627:0001`, QEMU's emulated tablet identity.
 
