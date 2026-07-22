@@ -57,3 +57,7 @@ The complete MortOS network protocol stack lives in the [MortOS repository](http
 ## 7. Add real timeouts and errors
 
 The early drivers use bounded spin delays. A port should replace these with monotonic deadlines, decode controller error bits, log failures, recover stalled hardware, and avoid assuming QEMU timing.
+
+## 8. Route HID keyboard events
+
+Call `usb_hid_poll_scancode()` from a periodic tick after `usb_boot_init()` has configured a HID boot keyboard. A non-zero return value is an XT set-1 make code. Read `g_usb_hid_shift` and `g_usb_hid_extended` before dispatching it. The polling function only reports newly pressed keys; key releases, typematic repeat, and LED output remain host work.

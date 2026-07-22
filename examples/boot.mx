@@ -13,3 +13,10 @@ fn mort_hardware_boot() {
     // polling control transfers, and should run before interrupts are enabled.
     usb_boot_init();
 }
+
+// Call at a steady cadence (MortOS uses its 100 Hz timer). A non-zero result
+// is an XT set-1 make code. The host should route it to its input dispatcher;
+// g_usb_hid_shift and g_usb_hid_extended carry the associated key flags.
+fn mort_hardware_poll_keyboard() -> u8 {
+    return usb_hid_poll_scancode();
+}

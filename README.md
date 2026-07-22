@@ -4,6 +4,8 @@ Reusable bare-metal hardware drivers extracted from [MortOS](https://github.com/
 
 This repository records the hardware-support work built for MortOS and provides the source, integration contract, test recipes, and design notes needed to reuse it in another Mort kernel. It is software that controls hardware; it is not a physical board, chipset, or dongle.
 
+**All driver and example implementation code in this repository is written in Mort (`.mx`).** Markdown files are documentation only; there is no C, C++, or Rust hardware implementation hidden behind the Mort API.
+
 ## What works today
 
 | Area | Current capability | Verified with | Status |
@@ -11,13 +13,14 @@ This repository records the hardware-support work built for MortOS and provides 
 | PCI | Configuration mechanism #1, bus 0 scan, all 32 slots and 8 functions | QEMU PCI topology | Working |
 | Ethernet | RTL8139 discovery, reset, MAC read, DMA TX, RX ring, frame transmit/receive | QEMU `rtl8139` | Working |
 | Audio | Intel 82801AA AC'97 discovery, mixer volume, 48 kHz PCM-out DMA, test tone | QEMU `AC97` | Working |
-| USB | UHCI discovery/reset, root-port reset, device address assignment, device/configuration descriptor reads | QEMU `usb-tablet` | Working foundation |
-| USB classes | Interface class/subclass/protocol detection | USB HID tablet, class 3 | Working |
+| USB | UHCI discovery/reset, addressing, descriptors, endpoint parsing, and `SET_CONFIGURATION` | QEMU `usb-tablet`, `usb-kbd` | Working foundation |
+| USB HID | Boot-keyboard protocol, interrupt-IN polling, modifiers, navigation keys, function keys, and text entry | QEMU `usb-kbd` | Working |
+| USB classes | Interface class/subclass/protocol and interrupt/bulk endpoint detection | USB HID devices | Working |
 | PC speaker | PIT channel 2 tone generation and gate control | Legacy PC speaker interface | Working |
 | Wi-Fi | PCI capability detection only | PCI class scan | Driver not implemented |
 | Bluetooth | USB Wireless Controller interface detection only | USB descriptor parser | HCI transport not implemented |
 
-“Working foundation” for USB means the host controller can enumerate a root-port device and parse its first interface. It does not yet mean hubs, hot-plug, HID reports, mass storage, or Bluetooth traffic are supported.
+“Working foundation” for USB means the host controller can enumerate and configure one root-port device, and a HID boot keyboard can provide input. It does not yet mean hubs, hot-plug, arbitrary HID report descriptors, mass storage, or Bluetooth traffic are supported.
 
 ## Repository layout
 
@@ -63,6 +66,8 @@ rtl_init();       // optional Ethernet
 ac97_init();      // optional audio
 usb_boot_init();  // before enabling interrupts in the current implementation
 ```
+
+For a configured HID boot keyboard, call `usb_hid_poll_scancode()` from a periodic kernel tick and route each non-zero set-1 make code to the host input dispatcher. The companion globals `g_usb_hid_shift` and `g_usb_hid_extended` describe modifiers and extended navigation keys. MortOS polls at 100 Hz.
 
 See [examples/boot.mx](examples/boot.mx) for a fuller example and [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for ownership and data flow.
 

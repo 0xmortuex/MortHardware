@@ -16,3 +16,5 @@ MortOS's compiler resolves functions across its combined translation unit, so th
 Known integration detail: `hardware.mx` contains the MortOS-specific `ethernet_disconnect()` lifecycle helper. Omit or adapt that function if your host does not expose `g_net_up`, `g_rtl_ok`, and `g_rtl_io`.
 
 The USB implementation updates `g_hw_bluetooth` when it finds a Bluetooth-class interface; include `hardware.mx` or provide that boolean in the host.
+
+`uhci.mx` also exposes `usb_hid_poll_scancode()` for HID boot keyboards. It returns XT set-1 make codes so a small host adapter can share an existing PS/2-style input dispatcher. All controller logic and HID translation remain Mort code.

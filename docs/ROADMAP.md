@@ -5,10 +5,9 @@
 - Replace fixed boot delays with monotonic deadlines and decoded TD errors.
 - Support multiple queue heads and reusable control-transfer construction.
 - Enumerate both UHCI root ports without returning after the first device.
-- Add configuration selection (`SET_CONFIGURATION`).
 - Add hub traversal, hot-plug state, device removal, and address allocation.
 - Build interrupt and isochronous transfer APIs.
-- Add HID boot-keyboard and pointer class drivers.
+- Add typematic keyboard repeat, lock-key LEDs, HID boot-pointer input, and a general HID report-descriptor parser.
 - Add USB mass-storage transport after a block-device API exists.
 
 ## Bluetooth

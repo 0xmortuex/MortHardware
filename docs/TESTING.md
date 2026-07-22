@@ -9,6 +9,7 @@ The initial drivers were verified on 22 July 2026 with QEMU 11.0.50 on an x86 fr
 | RTL8139 | `-device rtl8139` | Driver initializes, reads MAC, obtains DHCP connectivity in MortOS |
 | AC'97 | `-device AC97` | Controller reports ready; PCM test submission succeeds |
 | UHCI + HID | `-usb -device usb-tablet` | One USB device, descriptor ready, VID 1575, PID 1, interface class 3 |
+| UHCI keyboard | `-usb -device usb-kbd` | Device configured, class/protocol `3/1`; keyboard navigates Settings and enters `echo usb-ok` |
 
 The VID/PID values above are decimal values shown by MortOS Settings. In hexadecimal they are `0627:0001`, QEMU's emulated tablet identity.
 
@@ -32,7 +33,9 @@ python test.py smoke
 python build.py iso
 ```
 
-The USB verification used an ISO boot to obtain the framebuffer desktop, opened Settings → Hardware, and confirmed the live descriptor fields. The general smoke test currently covers the boot banner, help, echo, and uptime; dedicated automated hardware assertions are still a roadmap item.
+The repository includes `tests/platform_stubs.mx`, a Mort-only compile contract that supplies MortOS-owned state referenced by one lifecycle helper. Freestanding Mort supplies the typed x86 port-I/O primitives. The stub exists to expose missing host dependencies during compiler checks and is not part of a bootable kernel.
+
+The USB verification used an ISO boot to obtain the framebuffer desktop, opened Settings → Hardware using only QEMU's USB keyboard, confirmed the live configuration fields, opened Terminal, and successfully entered `echo usb-ok`. The general smoke test currently covers the boot banner, help, echo, and uptime; dedicated automated hardware assertions are still a roadmap item.
 
 ## Reporting a result
 

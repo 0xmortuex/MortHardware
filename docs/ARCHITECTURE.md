@@ -42,9 +42,13 @@ The current boot sequence is:
 2. Assign USB address 1.
 3. Read the complete 18-byte device descriptor.
 4. Read the configuration header and then up to 64 bytes of the configuration tree.
-5. Parse the first interface descriptor and publish class, subclass, and protocol.
+5. Parse the first interface and its interrupt/bulk endpoint descriptors.
+6. Issue `SET_CONFIGURATION` using the advertised configuration value.
+7. For a HID boot interface, issue `SET_PROTOCOL(0)` and poll interrupt-IN reports.
 
-The current implementation enumerates one device on the first active root port and polls completion using bounded delays. It has no hub traversal, scheduler concurrency, hot-plug state machine, or class-driver transfer layer yet.
+HID keyboard reports are translated from USB usage IDs to XT set-1 make codes so an existing PS/2-style kernel dispatcher can consume both input paths. New key presses, Shift modifiers, arrows, editing keys, and F1–F12 are supported; typematic repeat and LED output are not yet implemented.
+
+The current implementation enumerates one device on the first active root port and polls completion using bounded delays. It has no hub traversal, scheduler concurrency, hot-plug state machine, general HID report parser, or general class-driver transfer layer yet.
 
 ## PC speaker
 

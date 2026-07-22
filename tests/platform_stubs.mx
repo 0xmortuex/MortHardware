@@ -1,0 +1,5 @@
+// Compile-only host contract for MortHardware.
+// This supplies MortOS-owned state needed by one lifecycle helper. Freestanding
+// Mort already provides the typed x86 inb/inw/inl/outb/outw/outl primitives.
+
+let g_net_up: bool = false;
