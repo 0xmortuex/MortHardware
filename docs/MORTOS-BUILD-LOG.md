@@ -29,6 +29,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`2cfcaee`](https://github.com/0xmortuex/MortOS/commit/2cfcaee) | Added Poly1305 and the combined ChaCha20-Poly1305 AEAD construction in Mort, with RFC 8439 tag, ciphertext, and combined-authentication vectors. |
 | [`a3a7b4b`](https://github.com/0xmortuex/MortOS/commit/a3a7b4b) | Added constant-time-ladder X25519 in Mort, validated against RFC 7748's iteration vector plus Alice/Bob public keys and shared secret. |
 | [`c750da0`](https://github.com/0xmortuex/MortOS/commit/c750da0) | Added TLS 1.3 HKDF-Expand-Label and Derive-Secret encoding in Mort, validated against the published RFC 8448 handshake trace. |
+| [`7a2d54a`](https://github.com/0xmortuex/MortOS/commit/7a2d54a) | Added a native Mort TLS 1.3 ClientHello builder with SNI, supported versions/groups, X25519 key share, signature algorithms, and ChaCha20-Poly1305; guest tests parse the complete wire structure. |
 
 ## Demonstrated results
 
@@ -53,6 +54,7 @@ This is the public implementation record for the hardware work integrated into M
 - The authenticated-encryption checkpoint completed 10/10 smoke assertions after validating Poly1305 and the full ChaCha20-Poly1305 AEAD vector.
 - The key-exchange checkpoint completed 11/11 smoke assertions with RFC 7748 iteration and full Diffie-Hellman agreement vectors.
 - The TLS 1.3 key-schedule checkpoint completed 12/12 smoke assertions with an RFC 8448 derived-secret trace.
+- The ClientHello checkpoint completed 13/13 smoke assertions, including independent parsing of record/handshake lengths and mandatory extensions from guest memory.
 
 ## What this does not claim
 
