@@ -23,6 +23,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`d8cae3c`](https://github.com/0xmortuex/MortOS/commit/d8cae3c) | Added Content-Type-aware HTML/plain-text rendering, safe rejection of unsupported binary media, and expanded the native browser regression to 21 assertions. |
 | [`07a7820`](https://github.com/0xmortuex/MortOS/commit/07a7820) | Connected the existing Mort USB/PS2 pointer path to Vex tabs, new-tab control, navigation buttons, address bar, history, bookmarks and extracted-link rows. |
 | [`10f4d73`](https://github.com/0xmortuex/MortOS/commit/10f4d73) | Added an end-to-end QEMU check that enumerates a USB mouse, moves the live MortOS pointer, clicks Vex's new-tab control, and verifies the tab state change. |
+| [`b041161`](https://github.com/0xmortuex/MortOS/commit/b041161) | Added MortFS-backed recovery of the last non-private HTTP page, exposed only through an explicit Home action so startup never makes an unexpected network request. |
 
 ## Demonstrated results
 
@@ -40,6 +41,7 @@ This is the public implementation record for the hardware work integrated into M
 - The portable-route browser regression completed 19/19 assertions, including validation of the router and DNS values delivered by DHCP.
 - Content handling completed 21/21 browser assertions, including literal plain text, chunked HTML, and binary-response rejection.
 - The USB-mouse browser pass completed 22/22 assertions with an actual pointer-driven toolbar click.
+- Private-safe session recovery completed 24/24 browser assertions, including stored URL validation and explicit restore.
 
 ## What this does not claim
 
