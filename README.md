@@ -75,7 +75,7 @@ See [examples/boot.mx](examples/boot.mx) for a fuller example and [docs/ARCHITEC
 
 ## MortOS integration
 
-The active MortOS implementation is on the [`settings` branch](https://github.com/0xmortuex/MortOS/tree/settings). Its Settings app exposes live status for Ethernet, wireless capability, USB host/device enumeration, USB VID/PID and interface class, AC'97, storage, and other kernel capabilities.
+The active MortOS implementation is on the [`settings` branch](https://github.com/0xmortuex/MortOS/tree/settings). Its Settings app exposes live status for Ethernet, wireless capability, AC'97, storage, and other kernel capabilities. A dedicated USB Devices page lists up to six addressed devices with address, VID/PID, interface class/protocol, and configuration state.
 
 The exact implementation history and commit IDs are recorded in [docs/MORTOS-BUILD-LOG.md](docs/MORTOS-BUILD-LOG.md).
 
@@ -85,7 +85,7 @@ This is experimental kernel code. It can program PCI command registers, perform 
 
 ## Contributing
 
-Useful next contributions include UHCI hub and hot-plug support, HID transfers, Bluetooth USB HCI transport, a documented Wi-Fi chipset target, interrupt-driven operation, PCI bus/bridge traversal, and hardware test reports. Please include the device vendor/product ID, emulator or machine model, logs, and reproduction steps.
+Useful next contributions include USB hot-plug, nested/multi-TT hub support, arbitrary HID report parsing, USB mass storage, Bluetooth controller validation and higher protocols, a documented Wi-Fi chipset target, interrupt-driven operation, PCI bus/bridge traversal, and physical-hardware test reports. Please include the device vendor/product ID, emulator or machine model, logs, and reproduction steps.
 
 ## License
 
