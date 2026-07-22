@@ -27,6 +27,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`fefc822`](https://github.com/0xmortuex/MortOS/commit/fefc822) | Began the native HTTPS foundation in Mort with freestanding SHA-256, HMAC-SHA256 and HKDF-SHA256, each publish-gated by standard boot-time test vectors. |
 | [`4b12841`](https://github.com/0xmortuex/MortOS/commit/4b12841) | Added the ChaCha20 block function in Mort and gated it with the RFC 8439 test vector as the next TLS 1.3 cipher-suite prerequisite. |
 | [`2cfcaee`](https://github.com/0xmortuex/MortOS/commit/2cfcaee) | Added Poly1305 and the combined ChaCha20-Poly1305 AEAD construction in Mort, with RFC 8439 tag, ciphertext, and combined-authentication vectors. |
+| [`a3a7b4b`](https://github.com/0xmortuex/MortOS/commit/a3a7b4b) | Added constant-time-ladder X25519 in Mort, validated against RFC 7748's iteration vector plus Alice/Bob public keys and shared secret. |
 
 ## Demonstrated results
 
@@ -49,6 +50,7 @@ This is the public implementation record for the hardware work integrated into M
 - The TLS primitive checkpoint completed 7/7 smoke assertions, including SHA-256, RFC 4231 HMAC and RFC 5869 HKDF vectors inside the booted kernel.
 - The ChaCha20 checkpoint completed 8/8 smoke assertions with the RFC 8439 block vector inside the booted kernel.
 - The authenticated-encryption checkpoint completed 10/10 smoke assertions after validating Poly1305 and the full ChaCha20-Poly1305 AEAD vector.
+- The key-exchange checkpoint completed 11/11 smoke assertions with RFC 7748 iteration and full Diffie-Hellman agreement vectors.
 
 ## What this does not claim
 
