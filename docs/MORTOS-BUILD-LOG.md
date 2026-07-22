@@ -16,6 +16,9 @@ This is the public implementation record for the hardware work integrated into M
 | [`d853628`](https://github.com/0xmortuex/MortOS/commit/d853628) | Added per-device USB addresses, an eight-entry device table, both UHCI root ports, one-level hub power/reset/status enumeration, and simultaneous keyboard/mouse bindings. |
 | [`c3a72a7`](https://github.com/0xmortuex/MortOS/commit/c3a72a7) | Added a Settings USB Devices inventory showing address, VID/PID, class/protocol, and configuration state for each enumerated device. |
 | [`9a0e226`](https://github.com/0xmortuex/MortOS/commit/9a0e226) | Added automatic root/hub USB hot-plug recovery, manual Settings rescan, topology event diagnostics, and a 13-assertion QEMU regression suite. |
+| [`560309e`](https://github.com/0xmortuex/MortOS/commit/560309e) | Completed actionable Settings pages and search routing, added live hardware/network/storage/privacy/power/diagnostic controls, and persisted per-user preferences in MortFS. |
+| [`8785757`](https://github.com/0xmortuex/MortOS/commit/8785757) | Replaced the local Vex mock-up with a native Mort browser using DHCP, DNS, ARP, TCP and HTTP, including tabs, history, bookmarks, links, redirects, private mode and downloads. |
+| [`1db04ca`](https://github.com/0xmortuex/MortOS/commit/1db04ca) | Added private local address suggestions, HTTP/1.1 chunked-transfer decoding, public Settings/browser architecture guides, and a 17-assertion end-to-end browser regression. |
 
 ## Demonstrated results
 
@@ -28,6 +31,8 @@ This is the public implementation record for the hardware work integrated into M
 - The Settings USB Devices page displayed all three addressed devices and their descriptor identities during that combined-device boot.
 - Automated QEMU tests removed and reattached both a root-port keyboard and a hub-connected mouse; the device table and HID bindings recovered in all 13 assertions.
 - MortOS remained responsive in the graphical launcher and Settings app after boot-time USB enumeration.
+- Vex loaded a host-served page through the guest RTL8139 path, followed a relative link and redirect, decoded a chunked response, and preserved browser state across reboot.
+- The combined shell, USB, Settings, and browser verification completed 41/41 assertions on the documented tree.
 
 ## What this does not claim
 
