@@ -24,6 +24,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`07a7820`](https://github.com/0xmortuex/MortOS/commit/07a7820) | Connected the existing Mort USB/PS2 pointer path to Vex tabs, new-tab control, navigation buttons, address bar, history, bookmarks and extracted-link rows. |
 | [`10f4d73`](https://github.com/0xmortuex/MortOS/commit/10f4d73) | Added an end-to-end QEMU check that enumerates a USB mouse, moves the live MortOS pointer, clicks Vex's new-tab control, and verifies the tab state change. |
 | [`b041161`](https://github.com/0xmortuex/MortOS/commit/b041161) | Added MortFS-backed recovery of the last non-private HTTP page, exposed only through an explicit Home action so startup never makes an unexpected network request. |
+| [`fefc822`](https://github.com/0xmortuex/MortOS/commit/fefc822) | Began the native HTTPS foundation in Mort with freestanding SHA-256, HMAC-SHA256 and HKDF-SHA256, each publish-gated by standard boot-time test vectors. |
 
 ## Demonstrated results
 
@@ -43,6 +44,7 @@ This is the public implementation record for the hardware work integrated into M
 - The USB-mouse browser pass completed 22/22 assertions with an actual pointer-driven toolbar click.
 - Private-safe session recovery completed 24/24 browser assertions, including stored URL validation and explicit restore.
 - The final combined gate completed 48/48 assertions: 4 shell, 13 USB hot-plug, 7 Settings, and 24 native-browser checks.
+- The TLS primitive checkpoint completed 7/7 smoke assertions, including SHA-256, RFC 4231 HMAC and RFC 5869 HKDF vectors inside the booted kernel.
 
 ## What this does not claim
 
