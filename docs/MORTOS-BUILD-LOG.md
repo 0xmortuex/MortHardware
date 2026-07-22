@@ -31,6 +31,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`c750da0`](https://github.com/0xmortuex/MortOS/commit/c750da0) | Added TLS 1.3 HKDF-Expand-Label and Derive-Secret encoding in Mort, validated against the published RFC 8448 handshake trace. |
 | [`7a2d54a`](https://github.com/0xmortuex/MortOS/commit/7a2d54a) | Added a native Mort TLS 1.3 ClientHello builder with SNI, supported versions/groups, X25519 key share, signature algorithms, and ChaCha20-Poly1305; guest tests parse the complete wire structure. |
 | [`051365e`](https://github.com/0xmortuex/MortOS/commit/051365e) | Added a fail-closed x86 RDRAND entropy gate in Mort for ephemeral TLS keys, including CPUID detection, retry handling, and distinct nonzero 256-bit sample validation. |
+| [`02f035e`](https://github.com/0xmortuex/MortOS/commit/02f035e) | Added strict TLS 1.3 ServerHello parsing in Mort, validated against RFC 8448 and independently checked for negotiated version, cipher suite, X25519 group, and extracted server key. |
 
 ## Demonstrated results
 
@@ -57,6 +58,7 @@ This is the public implementation record for the hardware work integrated into M
 - The TLS 1.3 key-schedule checkpoint completed 12/12 smoke assertions with an RFC 8448 derived-secret trace.
 - The ClientHello checkpoint completed 13/13 smoke assertions, including independent parsing of record/handshake lengths and mandatory extensions from guest memory.
 - The hardware-entropy checkpoint completed 14/14 smoke assertions under QEMU's maximum x86 CPU profile with a live nonzero RDRAND sample.
+- The ServerHello checkpoint completed 15/15 smoke assertions, including extraction and independent verification of the RFC 8448 X25519 server key.
 
 ## What this does not claim
 
