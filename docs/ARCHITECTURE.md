@@ -52,7 +52,9 @@ HID boot-mouse reports publish signed relative X/Y movement and left/right/middl
 
 The current implementation enumerates both UHCI root ports into an eight-entry address/device table. A class-9 hub is configured through its hub descriptor, port power, port status, reset, and change-feature requests; connected downstream devices receive their own addresses. Keyboard and mouse bindings retain independent addresses, endpoints, speed flags, and data toggles.
 
-Hub traversal is currently one level deep. Transfer completion is polled using bounded delays, and there is no scheduler concurrency, hot-plug/removal state machine, general HID report parser, or general class-driver transfer layer yet.
+Every two seconds the polling path checks UHCI root connection-change bits and known hub-port connection/change status. A change triggers a guarded full-bus rescan that rebuilds the device table and HID/Bluetooth bindings. A manual `usb_rescan()` entry point exposes the same recovery path to Settings. Root keyboard and hub-connected mouse detach/reattach are covered by QEMU assertions.
+
+Hub traversal is currently one level deep. Transfer completion is polled using bounded delays, and there is no scheduler concurrency, incremental detach/address allocator, general HID report parser, or general class-driver transfer layer yet.
 
 ## Bluetooth USB HCI
 
@@ -66,4 +68,4 @@ The speaker helper programs PIT channel 2 and controls the speaker gate through 
 
 ## State publication
 
-The drivers publish compact globals such as `g_usb_ok`, `g_usb_vid`, `g_usb_interface_class`, `g_ac97_ok`, and `g_rtl_ok`. MortOS Settings consumes these values without taking controller ownership. This keeps controller reset and DMA setup out of UI/keyboard interrupt context.
+The drivers publish compact globals such as `g_usb_ok`, `g_usb_vid`, `g_usb_interface_class`, `g_ac97_ok`, and `g_rtl_ok`. MortOS Settings reads these values and invokes driver-owned service entry points such as `usb_rescan()`; it never writes controller registers directly.

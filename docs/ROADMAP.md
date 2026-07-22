@@ -4,7 +4,7 @@
 
 - Replace fixed boot delays with monotonic deadlines and decoded TD errors.
 - Support multiple queue heads and reusable control-transfer construction.
-- Extend one-level hub traversal to nested hubs and add hot-plug, device removal, and address reuse.
+- Extend one-level hub traversal to nested/multi-TT hubs and replace full-bus hot-plug rescans with incremental removal and address reuse.
 - Build interrupt and isochronous transfer APIs.
 - Add typematic keyboard repeat, lock-key LEDs, wheel/extra-button handling, and a general HID report-descriptor parser.
 - Add USB mass-storage transport after a block-device API exists.
@@ -40,7 +40,7 @@
 
 ## Quality
 
-- Emulator-driven hardware integration tests with machine-readable assertions.
+- Expand emulator-driven hardware assertions beyond the current root/hub USB hot-plug suite.
 - Register-level traces for failure diagnosis.
 - Fuzz descriptor parsers with host-side tests.
 - Hardware support matrix generated from reproducible reports.

@@ -13,14 +13,14 @@ This repository records the hardware-support work built for MortOS and provides 
 | PCI | Configuration mechanism #1, bus 0 scan, all 32 slots and 8 functions | QEMU PCI topology | Working |
 | Ethernet | RTL8139 discovery, reset, MAC read, DMA TX, RX ring, frame transmit/receive | QEMU `rtl8139` | Working |
 | Audio | Intel 82801AA AC'97 discovery, mixer volume, 48 kHz PCM-out DMA, test tone | QEMU `AC97` | Working |
-| USB | UHCI discovery/reset, per-device addressing, descriptors, endpoint parsing, hubs, downstream ports, and configuration | QEMU keyboard + hub + mouse topology | Working foundation |
+| USB | UHCI discovery/reset, per-device addressing, descriptors, hubs, downstream ports, automatic hot-plug rescans, and configuration | QEMU root and hub detach/reattach tests | Working foundation |
 | USB HID | Boot keyboard and mouse reports, interrupt-IN polling, key translation, signed pointer movement, and three buttons | QEMU `usb-kbd`, `usb-mouse` | Working |
 | USB classes | Interface class/subclass/protocol and interrupt/bulk endpoint detection | USB HID devices | Working |
 | PC speaker | PIT channel 2 tone generation and gate control | Legacy PC speaker interface | Working |
 | Wi-Fi | PCI capability detection only | PCI class scan | Driver not implemented |
 | Bluetooth | USB class/endpoint discovery, HCI command transport, Reset command, Command Complete validation | Mort compiler + no-device regressions | Needs controller verification |
 
-“Working foundation” for USB means the host controller can enumerate both root ports, configure hubs and downstream devices, and operate a boot keyboard and mouse simultaneously. It does not yet mean hot-plug, arbitrary HID report descriptors, mass storage, or Bluetooth traffic are complete.
+“Working foundation” for USB means the host controller can enumerate both root ports, configure hubs and downstream devices, recover automatically from tested root/hub attach and removal events, and operate a boot keyboard and mouse simultaneously. It does not yet mean nested hubs, arbitrary HID report descriptors, mass storage, isochronous transfers, or Bluetooth traffic are complete.
 
 ## Repository layout
 
@@ -85,7 +85,7 @@ This is experimental kernel code. It can program PCI command registers, perform 
 
 ## Contributing
 
-Useful next contributions include USB hot-plug, nested/multi-TT hub support, arbitrary HID report parsing, USB mass storage, Bluetooth controller validation and higher protocols, a documented Wi-Fi chipset target, interrupt-driven operation, PCI bus/bridge traversal, and physical-hardware test reports. Please include the device vendor/product ID, emulator or machine model, logs, and reproduction steps.
+Useful next contributions include nested/multi-TT hub support, incremental device removal, arbitrary HID report parsing, USB mass storage, Bluetooth controller validation and higher protocols, a documented Wi-Fi chipset target, interrupt-driven operation, PCI bus/bridge traversal, and physical-hardware test reports. Please include the device vendor/product ID, emulator or machine model, logs, and reproduction steps.
 
 ## License
 
