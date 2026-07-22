@@ -12,6 +12,8 @@ The initial drivers were verified on 22 July 2026 with QEMU 11.0.50 on an x86 fr
 | UHCI keyboard | `-usb -device usb-kbd` | Device configured, class/protocol `3/1`; keyboard navigates Settings and enters `echo usb-ok` |
 | UHCI mouse | `-usb -device usb-mouse` | Device configured as HID boot mouse; relative movement draws a cursor and a left click opens Settings |
 
+Bluetooth USB HCI currently has no standard QEMU device target. The class parser, control-transfer builder, Reset opcode/event matching, Mort compilation, and absent-device boot path are tested; successful controller initialization must not be claimed until a real or passthrough controller returns status zero.
+
 The VID/PID values above are decimal values shown by MortOS Settings. In hexadecimal they are `0627:0001`, QEMU's emulated tablet identity.
 
 ## Recommended test progression

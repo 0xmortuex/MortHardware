@@ -52,6 +52,12 @@ HID boot-mouse reports publish signed relative X/Y movement and left/right/middl
 
 The current implementation enumerates one device on the first active root port and polls completion using bounded delays. It has no hub traversal, scheduler concurrency, hot-plug state machine, general HID report parser, or general class-driver transfer layer yet.
 
+## Bluetooth USB HCI
+
+A configured interface matching class/subclass/protocol `e0/01/01` is treated as a Bluetooth USB controller. The parser records its interrupt event endpoint and bulk ACL endpoints. Mort sends the mandatory three-byte HCI Reset command as a class control transfer on endpoint 0 and polls the interrupt endpoint for a matching Command Complete event. `g_bt_hci_ready` becomes true only when that event reports status zero.
+
+This transport path compiles and passes absent-device regressions, but QEMU has no standard emulated Bluetooth USB controller. It remains explicitly unverified on a controller; discovery, pairing, L2CAP, security, and profiles are not claimed.
+
 ## PC speaker
 
 The speaker helper programs PIT channel 2 and controls the speaker gate through port `0x61`. It is independent of PCI and AC'97.

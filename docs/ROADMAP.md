@@ -13,8 +13,8 @@
 ## Bluetooth
 
 - Match Wireless Controller interface class `e0/01/01`.
-- Implement USB HCI event, command, ACL, and SCO endpoint transport.
-- Add HCI reset, local feature discovery, scan, and connection management.
+- Verify the USB HCI Reset/Command Complete path on identified controllers.
+- Add bulk ACL and isochronous SCO transfers, local feature discovery, scan, and connection management.
 - Add L2CAP and an initial pairing/security model.
 - Select profiles explicitly rather than claiming generic Bluetooth support.
 

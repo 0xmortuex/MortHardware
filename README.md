@@ -18,7 +18,7 @@ This repository records the hardware-support work built for MortOS and provides 
 | USB classes | Interface class/subclass/protocol and interrupt/bulk endpoint detection | USB HID devices | Working |
 | PC speaker | PIT channel 2 tone generation and gate control | Legacy PC speaker interface | Working |
 | Wi-Fi | PCI capability detection only | PCI class scan | Driver not implemented |
-| Bluetooth | USB Wireless Controller interface detection only | USB descriptor parser | HCI transport not implemented |
+| Bluetooth | USB class/endpoint discovery, HCI command transport, Reset command, Command Complete validation | Mort compiler + no-device regressions | Needs controller verification |
 
 “Working foundation” for USB means the host controller can enumerate and configure one root-port device, and a HID boot keyboard can provide input. It does not yet mean hubs, hot-plug, arbitrary HID report descriptors, mass storage, or Bluetooth traffic are supported.
 

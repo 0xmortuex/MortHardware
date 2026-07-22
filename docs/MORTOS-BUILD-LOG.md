@@ -12,6 +12,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`48a2c0d`](https://github.com/0xmortuex/MortOS/commit/48a2c0d) | Added boot-time UHCI ownership, root-port enumeration, USB address assignment, device/configuration descriptors, VID/PID, and interface class reporting in Settings. |
 | [`8db9d6b`](https://github.com/0xmortuex/MortOS/commit/8db9d6b) | Added USB `SET_CONFIGURATION`, endpoint discovery, HID boot-protocol selection, interrupt-IN polling, usage-to-scancode translation, and working USB keyboard input. |
 | [`8268e3e`](https://github.com/0xmortuex/MortOS/commit/8268e3e) | Added HID boot-mouse reports, signed pointer movement, button state, a framebuffer cursor, launcher tile clicks, and Settings section clicks. |
+| [`5866840`](https://github.com/0xmortuex/MortOS/commit/5866840) | Added Bluetooth USB class/endpoint discovery, HCI Reset control transport, Command Complete validation, and honest Detected/Reset sent/Ready Settings states. |
 
 ## Demonstrated results
 
