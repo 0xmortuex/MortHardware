@@ -42,6 +42,7 @@ This is the public implementation record for the hardware work integrated into M
 - Content handling completed 21/21 browser assertions, including literal plain text, chunked HTML, and binary-response rejection.
 - The USB-mouse browser pass completed 22/22 assertions with an actual pointer-driven toolbar click.
 - Private-safe session recovery completed 24/24 browser assertions, including stored URL validation and explicit restore.
+- The final combined gate completed 48/48 assertions: 4 shell, 13 USB hot-plug, 7 Settings, and 24 native-browser checks.
 
 ## What this does not claim
 
