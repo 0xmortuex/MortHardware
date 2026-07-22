@@ -21,6 +21,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`1db04ca`](https://github.com/0xmortuex/MortOS/commit/1db04ca) | Added private local address suggestions, HTTP/1.1 chunked-transfer decoding, public Settings/browser architecture guides, and a 17-assertion end-to-end browser regression. |
 | [`84581ca`](https://github.com/0xmortuex/MortOS/commit/84581ca) | Removed QEMU-specific routing assumptions: DHCP now records subnet mask, gateway and DNS options, while Vex performs subnet-aware ARP routing through the leased gateway. |
 | [`d8cae3c`](https://github.com/0xmortuex/MortOS/commit/d8cae3c) | Added Content-Type-aware HTML/plain-text rendering, safe rejection of unsupported binary media, and expanded the native browser regression to 21 assertions. |
+| [`07a7820`](https://github.com/0xmortuex/MortOS/commit/07a7820) | Connected the existing Mort USB/PS2 pointer path to Vex tabs, new-tab control, navigation buttons, address bar, history, bookmarks and extracted-link rows. |
 
 ## Demonstrated results
 
