@@ -1,0 +1,15 @@
+// Minimal MortHardware boot integration.
+// The host kernel must provide x86 port I/O and DMA-visible memory as described
+// in docs/PORTING.md. Call this after basic CPU/platform setup.
+
+fn mort_hardware_boot() {
+    hw_scan_pci();
+
+    // Each driver fails cleanly when its target controller is absent.
+    rtl_init();
+    ac97_init();
+
+    // The current UHCI implementation owns and resets the controller, performs
+    // polling control transfers, and should run before interrupts are enabled.
+    usb_boot_init();
+}

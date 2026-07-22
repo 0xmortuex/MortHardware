@@ -1,0 +1,55 @@
+# Architecture
+
+MortHardware is split into discovery, controller drivers, and protocol helpers. The source is deliberately small enough to study while retaining the real register and DMA operations used by MortOS.
+
+```mermaid
+flowchart TD
+    K["Host kernel"] --> IO["x86 port I/O"]
+    K --> DMA["DMA-safe memory / physical addresses"]
+    IO --> PCI["PCI configuration mechanism #1"]
+    PCI --> SCAN["Capability discovery"]
+    PCI --> RTL["RTL8139 Ethernet"]
+    PCI --> AC97["Intel 82801AA AC'97"]
+    PCI --> UHCI["USB 1.1 UHCI"]
+    RTL --> ETH["Ethernet frames"]
+    UHCI --> DESC["USB device + configuration descriptors"]
+    SCAN --> UI["Settings / diagnostics consumer"]
+    AC97 --> UI
+    DESC --> UI
+```
+
+## Discovery
+
+`hardware.mx` walks PCI bus 0 across 32 device slots and all 8 functions. It classifies Ethernet, wireless/network-other, audio, and USB controllers from the class/subclass fields. This is capability discovery, not proof that a matching device has a working driver.
+
+## RTL8139
+
+`rtl8139.mx` uses PCI BAR0 port I/O. It enables PCI bus mastering, resets the NIC, configures a 9728-byte receive area around an 8 KiB wrapping ring, and maintains four transmit descriptors. The device performs DMA directly against the driver's global buffers.
+
+`endian.mx` and `ethernet.mx` contain the byte-order and Ethernet-frame helpers needed by the driver's diagnostic frame. MortOS itself adds ARP, IPv4, ICMP, UDP, DHCP, DNS, TCP, and HTTP in its main repository.
+
+## AC'97
+
+`ac97.mx` currently targets PCI vendor/device `8086:2415`, the Intel 82801AA AC'97 controller emulated by QEMU. It discovers the mixer and bus-master BARs, enables I/O and bus mastering, establishes a 48 kHz front-DAC rate, controls stereo attenuation, and submits a one-entry buffer descriptor list for a PCM test tone.
+
+## UHCI
+
+`uhci.mx` finds PCI class `0x0c/0x03` with programming interface `0x00`. It resets the host and root port, constructs a 4 KiB-aligned 1024-entry frame list, and runs control transfers through one queue head and transfer descriptors.
+
+The current boot sequence is:
+
+1. Read the first 8 bytes of the device descriptor at address 0.
+2. Assign USB address 1.
+3. Read the complete 18-byte device descriptor.
+4. Read the configuration header and then up to 64 bytes of the configuration tree.
+5. Parse the first interface descriptor and publish class, subclass, and protocol.
+
+The current implementation enumerates one device on the first active root port and polls completion using bounded delays. It has no hub traversal, scheduler concurrency, hot-plug state machine, or class-driver transfer layer yet.
+
+## PC speaker
+
+The speaker helper programs PIT channel 2 and controls the speaker gate through port `0x61`. It is independent of PCI and AC'97.
+
+## State publication
+
+The drivers publish compact globals such as `g_usb_ok`, `g_usb_vid`, `g_usb_interface_class`, `g_ac97_ok`, and `g_rtl_ok`. MortOS Settings consumes these values without taking controller ownership. This keeps controller reset and DMA setup out of UI/keyboard interrupt context.
