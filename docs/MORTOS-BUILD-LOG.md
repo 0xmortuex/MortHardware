@@ -19,6 +19,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`560309e`](https://github.com/0xmortuex/MortOS/commit/560309e) | Completed actionable Settings pages and search routing, added live hardware/network/storage/privacy/power/diagnostic controls, and persisted per-user preferences in MortFS. |
 | [`8785757`](https://github.com/0xmortuex/MortOS/commit/8785757) | Replaced the local Vex mock-up with a native Mort browser using DHCP, DNS, ARP, TCP and HTTP, including tabs, history, bookmarks, links, redirects, private mode and downloads. |
 | [`1db04ca`](https://github.com/0xmortuex/MortOS/commit/1db04ca) | Added private local address suggestions, HTTP/1.1 chunked-transfer decoding, public Settings/browser architecture guides, and a 17-assertion end-to-end browser regression. |
+| [`84581ca`](https://github.com/0xmortuex/MortOS/commit/84581ca) | Removed QEMU-specific routing assumptions: DHCP now records subnet mask, gateway and DNS options, while Vex performs subnet-aware ARP routing through the leased gateway. |
 
 ## Demonstrated results
 
@@ -33,6 +34,7 @@ This is the public implementation record for the hardware work integrated into M
 - MortOS remained responsive in the graphical launcher and Settings app after boot-time USB enumeration.
 - Vex loaded a host-served page through the guest RTL8139 path, followed a relative link and redirect, decoded a chunked response, and preserved browser state across reboot.
 - The combined shell, USB, Settings, and browser verification completed 41/41 assertions on the documented tree.
+- The portable-route browser regression completed 19/19 assertions, including validation of the router and DNS values delivered by DHCP.
 
 ## What this does not claim
 
