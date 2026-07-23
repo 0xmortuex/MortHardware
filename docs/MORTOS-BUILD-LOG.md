@@ -59,6 +59,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`316412c`](https://github.com/0xmortuex/MortOS/commit/316412c) | Enforced X.509 roles and identity: CA/leaf BasicConstraints, keyCertSign/digitalSignature usage, serverAuth EKU, DNS or IPv4 SAN matching, duplicate-role rejection, and fail-closed unknown critical extensions. |
 | [`52ca551`](https://github.com/0xmortuex/MortOS/commit/52ca551) | Added a bounded per-user MortFS CA-root store, strict self-signed DER import, constant-time anchor lookup, private-mode refusal, Vex Settings import/clear controls, automatic trust across independent leaf renewals, and BasicConstraints path-length enforcement. |
 | [`6c83a98`](https://github.com/0xmortuex/MortOS/commit/6c83a98) | Upgraded imported roots from hash-only pins to validated DER trust anchors, migrated legacy VXR1 stores, completed chains against a local issuer when servers omit the root, and enforced the local root's path-length constraint. |
+| [`25d2460`](https://github.com/0xmortuex/MortOS/commit/25d2460) | Expanded Vex trust storage to fifteen DER anchors within one MortFS extent and added atomic concatenated-DER bundle import, duplicate skipping, VXR1/VXR2 migration, capacity enforcement, persistence, and invalid-bundle rollback. |
 
 ## Demonstrated results
 
@@ -112,6 +113,7 @@ This is the public implementation record for the hardware work integrated into M
 - The strict X.509-policy checkpoint kept the live browser gate at 29/29 and expanded boot/crypto/security validation to 33/33 assertions.
 - The imported-root checkpoint completed 32/32 live browser assertions and 33/33 boot/crypto/security assertions, including host-pin fallback, private-mode import refusal, an independently renewed leaf under the imported CA, reboot persistence, and explicit root clearing.
 - The local-anchor chain-building checkpoint kept both gates green while the live TLS server deliberately omitted its root certificate; Vex completed the chain from the transmitted leaf to the validated MortFS anchor.
+- The CA-bundle checkpoint completed 34/34 live browser assertions and 33/33 boot/crypto/security assertions, including duplicate elimination, two-root reboot persistence, deliberate source corruption, atomic rollback, and explicit clearing.
 
 ## What this does not claim
 
