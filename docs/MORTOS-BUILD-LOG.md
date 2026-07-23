@@ -47,6 +47,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`088077e`](https://github.com/0xmortuex/MortOS/commit/088077e) | Connected RSA-PSS to TLS 1.3 CertificateVerify parsing, exact server-context construction, transcript hashing, negotiated-scheme enforcement, and end-to-end RFC 8448 signature verification. |
 | [`9b55565`](https://github.com/0xmortuex/MortOS/commit/9b55565) | Completed the TLS 1.3 post-server-Finished key schedule: master secret, client/server application traffic secrets, directional write material, and client Finished generation. |
 | [`fcee003`](https://github.com/0xmortuex/MortOS/commit/fcee003) | Added capacity-checked outbound TLS 1.3 records with sequence nonces, authenticated headers, inner content types, optional padding, ciphertext, and tags. |
+| [`886a57c`](https://github.com/0xmortuex/MortOS/commit/886a57c) | Connected Vex HTTPS URLs to the real RTL8139/TCP path: fresh RDRAND-backed X25519 ClientHello exchange, bounded TLS record-stream reassembly, strict live ServerHello validation, and handshake-key derivation while keeping response content behind the certificate trust gate. |
 
 ## Demonstrated results
 
@@ -89,6 +90,7 @@ This is the public implementation record for the hardware work integrated into M
 - The TLS CertificateVerify checkpoint completed 30/30 smoke assertions with independent validation of the RFC server-context digest.
 - The application-key checkpoint completed 31/31 smoke assertions with independent guest-memory checks of the RFC master secret, both application secrets, and client Finished.
 - The outbound-record checkpoint completed 32/32 smoke assertions with a padded encrypt/decrypt round trip and undersized-buffer rejection.
+- The live-negotiation checkpoint completed 25/25 browser assertions against a host TLS 1.3 server plus the full 32/32 boot/crypto/security smoke gate.
 
 ## What this does not claim
 
