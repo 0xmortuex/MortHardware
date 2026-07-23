@@ -43,6 +43,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`80c760e`](https://github.com/0xmortuex/MortOS/commit/80c760e) | Added fail-closed certificate-time validation against a stable full CMOS date, handling BCD/binary and 12/24-hour RTC modes while rejecting missing centuries, impossible dates, and unstable update windows. |
 | [`761e387`](https://github.com/0xmortuex/MortOS/commit/761e387) | Added RSA SubjectPublicKeyInfo parsing with exact `rsaEncryption` parameters, byte-aligned key framing, canonical positive integers, 2048–4096-bit odd modulus policy, and bounded odd exponent validation. |
 | [`537d068`](https://github.com/0xmortuex/MortOS/commit/537d068) | Added bounded big-integer RSA public arithmetic in Mort using Montgomery multiplication and verified the complete recovered PKCS#1 block from RFC 8448's published certificate signature. |
+| [`35f7a55`](https://github.com/0xmortuex/MortOS/commit/35f7a55) | Added strict RSA PKCS#1 v1.5/SHA-256 certificate-signature checks and RSA-PSS-SHA256/MGF1 TLS CertificateVerify validation, including malformed-digest rejection. |
 
 ## Demonstrated results
 
@@ -81,6 +82,7 @@ This is the public implementation record for the hardware work integrated into M
 - The RTC-validity checkpoint completed 25/25 smoke assertions with a live full-date read from QEMU CMOS.
 - The RSA-key checkpoint completed 26/26 smoke assertions using a generated long-form 2048-bit DER vector plus malformed-exponent rejection.
 - The RSA-arithmetic checkpoint completed 27/27 smoke assertions, independently checking the recovered signature-block prefix and SHA-256 digest in guest memory.
+- The RSA-signature checkpoint completed 29/29 smoke assertions across RFC 8448 certificate and CertificateVerify encodings plus corrupted-digest rejection.
 
 ## What this does not claim
 
