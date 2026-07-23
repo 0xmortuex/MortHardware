@@ -65,6 +65,8 @@ This is the public implementation record for the hardware work integrated into M
 | [`123d73a`](https://github.com/0xmortuex/MortOS/commit/123d73a) | Added Personal, Work, School, and Dev Vex workspaces with independent four-tab stacks and persisted active-workspace selection. |
 | [`093c91e`](https://github.com/0xmortuex/MortOS/commit/093c91e) | Added the canonical-style `Ctrl+K` Vex command bar with page navigation, new/private tab actions, workspace switching, and address fallback. |
 | [`7e84cbe`](https://github.com/0xmortuex/MortOS/commit/7e84cbe) | Replaced the session-only last-download display with an eight-record MortFS manager containing exact filename, byte count, text/binary kind, and HTTP/HTTPS metadata; private saves remain deliberately unrecorded. |
+| [`f36c5fb`](https://github.com/0xmortuex/MortOS/commit/f36c5fb) | Added strict shared HTTP/1.0/1.1 status-line parsing for normal responses and redirects, rejecting unsupported versions, non-decimal codes, and missing separators before body rendering. |
+| [`32aeb7e`](https://github.com/0xmortuex/MortOS/commit/32aeb7e) | Added four persistent named Vex session snapshots, private-mode save refusal, a Saved Sessions page, command-bar save/open/delete workflows, and case-insensitive on-device History search. |
 
 ## Demonstrated results
 
@@ -122,6 +124,8 @@ This is the public implementation record for the hardware work integrated into M
 - The binary-download checkpoint completed 39/39 live browser assertions and 33/33 boot/crypto/security assertions, including hostile URL-filename sanitization, zero binary leakage into the text renderer, byte-exact MortFS persistence over HTTP and authenticated HTTPS, reboot survival, and corrupt-bundle rollback.
 - The canonical-Vex identity and workspace checkpoints completed 43/43 live browser assertions; the command-bar checkpoint expanded that gate to 45/45.
 - The persistent download-manager checkpoint completed 48/48 live browser assertions and 33/33 boot/crypto/security assertions, including private-mode non-recording, exact per-record length/type/transport metadata, three-save indexing, and full reboot recovery.
+- The strict HTTP status checkpoint completed 49/49 live browser assertions and 33/33 boot/crypto/security assertions; a malicious `2A0` status was rejected before its body reached the renderer.
+- The named-session and searchable-History checkpoint completed 53/53 live browser assertions and 33/33 boot/crypto/security assertions, including private-tab save refusal and full session-library reboot recovery.
 
 ## What this does not claim
 
