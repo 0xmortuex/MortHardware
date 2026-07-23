@@ -34,6 +34,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`02f035e`](https://github.com/0xmortuex/MortOS/commit/02f035e) | Added strict TLS 1.3 ServerHello parsing in Mort, validated against RFC 8448 and independently checked for negotiated version, cipher suite, X25519 group, and extracted server key. |
 | [`072fd88`](https://github.com/0xmortuex/MortOS/commit/072fd88) | Implemented the TLS 1.3 post-hello key schedule in Mort: X25519 agreement with all-zero rejection, handshake/client/server traffic secrets, and directional write keys and IVs, verified against RFC 8448. |
 | [`3d28000`](https://github.com/0xmortuex/MortOS/commit/3d28000) | Added full-size ChaCha20-Poly1305 TLS record authentication/decryption, sequence-number nonce construction, inner-content decoding, and a fail-closed forged-tag test that proves plaintext is not released before authentication. |
+| [`28e6ceb`](https://github.com/0xmortuex/MortOS/commit/28e6ceb) | Added TLS 1.3 Finished-key derivation and constant-time server Finished verification in Mort, checked against the RFC 8448 transcript through CertificateVerify and its published verify-data value. |
 
 ## Demonstrated results
 
@@ -63,6 +64,7 @@ This is the public implementation record for the hardware work integrated into M
 - The ServerHello checkpoint completed 15/15 smoke assertions, including extraction and independent verification of the RFC 8448 X25519 server key.
 - The handshake-keys checkpoint completed 16/16 smoke assertions with independent guest-memory checks of the RFC 8448 handshake secret, server traffic secret, write key, and IV.
 - The encrypted-record checkpoint completed 18/18 smoke assertions, covering forged-tag rejection and authenticated recovery of a TLS 1.3 handshake payload.
+- The Finished-verification checkpoint completed 19/19 smoke assertions against the RFC 8448 server Finished value.
 
 ## What this does not claim
 
