@@ -71,6 +71,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`c0aa1ca`](https://github.com/0xmortuex/MortOS/commit/c0aa1ca) | Hardened HTTP message framing with line-anchored header recognition, bounded decimal Content-Length parsing, duplicate/ambiguous framing rejection, and truncated-body refusal before rendering. |
 | [`eb933c7`](https://github.com/0xmortuex/MortOS/commit/eb933c7) | Completed browser-data clearing for download metadata, named sessions, and per-site profiles through Settings and the command bar, with private-mode refusal and preservation of downloaded MortFS files. |
 | [`c1854cf`](https://github.com/0xmortuex/MortOS/commit/c1854cf) | Added automatic full tab-stack recovery for all four Vex workspaces plus a persistent four-item recently closed ring and command/keyboard reopen workflow, while excluding private navigation from the journal. |
+| [`74791f6`](https://github.com/0xmortuex/MortOS/commit/74791f6) | Added the native Vex Library with eight persistent short notes and eight Read Later URLs, a local page and command-bar workflows, clickable reopening, private-mode non-persistence, reboot recovery, and durable data clearing. |
 
 ## Demonstrated results
 
@@ -134,6 +135,7 @@ This is the public implementation record for the hardware work integrated into M
 - The HTTP framing checkpoint completed 59/59 live browser assertions and 33/33 boot/crypto/security assertions, including live ambiguous-framing and truncated-body attacks whose markers never reached the renderer.
 - The browser-data checkpoint completed 61/61 live browser assertions and 33/33 boot/crypto/security assertions; direct post-shutdown MortFS inspection proved all three clears persisted while exact downloaded files remained intact.
 - The workspace-journal checkpoint completed 64/64 live browser assertions and 33/33 boot/crypto/security assertions, including multi-entry LIFO reopen, all-workspace recovery, and reopening a closed tab after a full reboot.
+- The Notes/Read Later checkpoint completed 67/67 live browser assertions and 33/33 boot/crypto/security assertions, including exact record contents, private-mode refusal, full reboot recovery, clickable local-library integration, and direct post-shutdown proof that clearing both collections persisted.
 
 ## What this does not claim
 
