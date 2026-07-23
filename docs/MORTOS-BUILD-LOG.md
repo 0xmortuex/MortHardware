@@ -61,6 +61,10 @@ This is the public implementation record for the hardware work integrated into M
 | [`6c83a98`](https://github.com/0xmortuex/MortOS/commit/6c83a98) | Upgraded imported roots from hash-only pins to validated DER trust anchors, migrated legacy VXR1 stores, completed chains against a local issuer when servers omit the root, and enforced the local root's path-length constraint. |
 | [`25d2460`](https://github.com/0xmortuex/MortOS/commit/25d2460) | Expanded Vex trust storage to fifteen DER anchors within one MortFS extent and added atomic concatenated-DER bundle import, duplicate skipping, VXR1/VXR2 migration, capacity enforcement, persistence, and invalid-bundle rollback. |
 | [`dd6e778`](https://github.com/0xmortuex/MortOS/commit/dd6e778) | Added bounded non-text HTTP/HTTPS downloads: Vex stages up to 12 KiB outside the text renderer, derives and sanitizes a MortFS filename from the URL, saves the exact bytes only on explicit request, and reports the last saved filename and size. |
+| [`337ca1b`](https://github.com/0xmortuex/MortOS/commit/337ca1b) | Brought the Claude-designed MortuexOS desktop language into the real framebuffer kernel and began the canonical Vex native port: shared gold-diamond identity, warm browser shell, vertical tabs/library, floating dock, rounded UI primitives, and an explicit upstream-to-native boundary document. |
+| [`123d73a`](https://github.com/0xmortuex/MortOS/commit/123d73a) | Added Personal, Work, School, and Dev Vex workspaces with independent four-tab stacks and persisted active-workspace selection. |
+| [`093c91e`](https://github.com/0xmortuex/MortOS/commit/093c91e) | Added the canonical-style `Ctrl+K` Vex command bar with page navigation, new/private tab actions, workspace switching, and address fallback. |
+| [`7e84cbe`](https://github.com/0xmortuex/MortOS/commit/7e84cbe) | Replaced the session-only last-download display with an eight-record MortFS manager containing exact filename, byte count, text/binary kind, and HTTP/HTTPS metadata; private saves remain deliberately unrecorded. |
 
 ## Demonstrated results
 
@@ -116,6 +120,8 @@ This is the public implementation record for the hardware work integrated into M
 - The local-anchor chain-building checkpoint kept both gates green while the live TLS server deliberately omitted its root certificate; Vex completed the chain from the transmitted leaf to the validated MortFS anchor.
 - The CA-bundle checkpoint completed 34/34 live browser assertions and 33/33 boot/crypto/security assertions, including duplicate elimination, two-root reboot persistence, deliberate source corruption, atomic rollback, and explicit clearing.
 - The binary-download checkpoint completed 39/39 live browser assertions and 33/33 boot/crypto/security assertions, including hostile URL-filename sanitization, zero binary leakage into the text renderer, byte-exact MortFS persistence over HTTP and authenticated HTTPS, reboot survival, and corrupt-bundle rollback.
+- The canonical-Vex identity and workspace checkpoints completed 43/43 live browser assertions; the command-bar checkpoint expanded that gate to 45/45.
+- The persistent download-manager checkpoint completed 48/48 live browser assertions and 33/33 boot/crypto/security assertions, including private-mode non-recording, exact per-record length/type/transport metadata, three-save indexing, and full reboot recovery.
 
 ## What this does not claim
 
