@@ -55,6 +55,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`bd417cf`](https://github.com/0xmortuex/MortOS/commit/bd417cf) | Enabled authenticated pinned HTTPS pages: encrypted GET requests, application-record authentication/decryption, bounded NewSessionTicket handling, safe HTTP accumulation/rendering, HTTPS UI state, application-key cleanup, and FIN-safe delivery of the final TLS record. |
 | [`df3a408`](https://github.com/0xmortuex/MortOS/commit/df3a408) | Added visible HTTPS trust management in Browser Settings, persistent-pin clearing, secure-scheme preservation for relative links, authenticated-page link extraction coverage, and corrected stale UI capability descriptions. |
 | [`11ed913`](https://github.com/0xmortuex/MortOS/commit/11ed913) | Audited and corrected the browser's security claims and live Network status so working pinned HTTPS is distinguished precisely from the still-unimplemented public-CA chain/root-store mode. |
+| [`c8f71ab`](https://github.com/0xmortuex/MortOS/commit/c8f71ab) | Added bounded RSA certificate-chain traversal, full-chain RTC validity checks, exact issuer/subject linking, SHA256-with-RSA child-signature verification, final-anchor fingerprint pins, and a renewal regression using two different leaves under one private CA. |
 
 ## Demonstrated results
 
@@ -104,6 +105,7 @@ This is the public implementation record for the hardware work integrated into M
 - The pinned client-handshake checkpoint completed 28/28 browser assertions and 32/32 smoke assertions, including confirmation from the host TLS implementation.
 - The authenticated-HTTPS checkpoint completed 28/28 browser assertions and 32/32 smoke assertions, with the host inspecting the encrypted GET and Vex rendering the authenticated response marker.
 - The HTTPS trust-management checkpoint completed 29/29 browser assertions and 32/32 smoke assertions, including reboot persistence followed by an explicit Settings clear.
+- The chain-anchor checkpoint completed 29/29 browser assertions and 32/32 smoke assertions; a renewed leaf/key under the same pinned CA remained trusted only after full issuer-signature verification.
 
 ## What this does not claim
 
