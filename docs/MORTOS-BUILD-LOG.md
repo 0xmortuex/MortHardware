@@ -67,6 +67,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`7e84cbe`](https://github.com/0xmortuex/MortOS/commit/7e84cbe) | Replaced the session-only last-download display with an eight-record MortFS manager containing exact filename, byte count, text/binary kind, and HTTP/HTTPS metadata; private saves remain deliberately unrecorded. |
 | [`f36c5fb`](https://github.com/0xmortuex/MortOS/commit/f36c5fb) | Added strict shared HTTP/1.0/1.1 status-line parsing for normal responses and redirects, rejecting unsupported versions, non-decimal codes, and missing separators before body rendering. |
 | [`32aeb7e`](https://github.com/0xmortuex/MortOS/commit/32aeb7e) | Added four persistent named Vex session snapshots, private-mode save refusal, a Saved Sessions page, command-bar save/open/delete workflows, and case-insensitive on-device History search. |
+| [`76dc419`](https://github.com/0xmortuex/MortOS/commit/76dc419) | Added a native reading layout and eight persistent per-origin profiles for reading mode and extracted-link policy, enforced private-mode non-persistence, and repaired alias-unsafe reload so saved controls reapply on a real refresh. |
 
 ## Demonstrated results
 
@@ -126,6 +127,7 @@ This is the public implementation record for the hardware work integrated into M
 - The persistent download-manager checkpoint completed 48/48 live browser assertions and 33/33 boot/crypto/security assertions, including private-mode non-recording, exact per-record length/type/transport metadata, three-save indexing, and full reboot recovery.
 - The strict HTTP status checkpoint completed 49/49 live browser assertions and 33/33 boot/crypto/security assertions; a malicious `2A0` status was rejected before its body reached the renderer.
 - The named-session and searchable-History checkpoint completed 53/53 live browser assertions and 33/33 boot/crypto/security assertions, including private-tab save refusal and full session-library reboot recovery.
+- The reading/site-control checkpoint completed 57/57 live browser assertions and 33/33 boot/crypto/security assertions, including origin-scoped link blocking, alias-safe reload, preference reapplication, and full reboot recovery.
 
 ## What this does not claim
 
