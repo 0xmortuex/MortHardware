@@ -60,6 +60,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`52ca551`](https://github.com/0xmortuex/MortOS/commit/52ca551) | Added a bounded per-user MortFS CA-root store, strict self-signed DER import, constant-time anchor lookup, private-mode refusal, Vex Settings import/clear controls, automatic trust across independent leaf renewals, and BasicConstraints path-length enforcement. |
 | [`6c83a98`](https://github.com/0xmortuex/MortOS/commit/6c83a98) | Upgraded imported roots from hash-only pins to validated DER trust anchors, migrated legacy VXR1 stores, completed chains against a local issuer when servers omit the root, and enforced the local root's path-length constraint. |
 | [`25d2460`](https://github.com/0xmortuex/MortOS/commit/25d2460) | Expanded Vex trust storage to fifteen DER anchors within one MortFS extent and added atomic concatenated-DER bundle import, duplicate skipping, VXR1/VXR2 migration, capacity enforcement, persistence, and invalid-bundle rollback. |
+| [`dd6e778`](https://github.com/0xmortuex/MortOS/commit/dd6e778) | Added bounded non-text HTTP/HTTPS downloads: Vex stages up to 12 KiB outside the text renderer, derives and sanitizes a MortFS filename from the URL, saves the exact bytes only on explicit request, and reports the last saved filename and size. |
 
 ## Demonstrated results
 
@@ -114,6 +115,7 @@ This is the public implementation record for the hardware work integrated into M
 - The imported-root checkpoint completed 32/32 live browser assertions and 33/33 boot/crypto/security assertions, including host-pin fallback, private-mode import refusal, an independently renewed leaf under the imported CA, reboot persistence, and explicit root clearing.
 - The local-anchor chain-building checkpoint kept both gates green while the live TLS server deliberately omitted its root certificate; Vex completed the chain from the transmitted leaf to the validated MortFS anchor.
 - The CA-bundle checkpoint completed 34/34 live browser assertions and 33/33 boot/crypto/security assertions, including duplicate elimination, two-root reboot persistence, deliberate source corruption, atomic rollback, and explicit clearing.
+- The binary-download checkpoint completed 39/39 live browser assertions and 33/33 boot/crypto/security assertions, including hostile URL-filename sanitization, zero binary leakage into the text renderer, byte-exact MortFS persistence over HTTP and authenticated HTTPS, reboot survival, and corrupt-bundle rollback.
 
 ## What this does not claim
 
