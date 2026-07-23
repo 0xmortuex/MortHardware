@@ -56,6 +56,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`df3a408`](https://github.com/0xmortuex/MortOS/commit/df3a408) | Added visible HTTPS trust management in Browser Settings, persistent-pin clearing, secure-scheme preservation for relative links, authenticated-page link extraction coverage, and corrected stale UI capability descriptions. |
 | [`11ed913`](https://github.com/0xmortuex/MortOS/commit/11ed913) | Audited and corrected the browser's security claims and live Network status so working pinned HTTPS is distinguished precisely from the still-unimplemented public-CA chain/root-store mode. |
 | [`c8f71ab`](https://github.com/0xmortuex/MortOS/commit/c8f71ab) | Added bounded RSA certificate-chain traversal, full-chain RTC validity checks, exact issuer/subject linking, SHA256-with-RSA child-signature verification, final-anchor fingerprint pins, and a renewal regression using two different leaves under one private CA. |
+| [`316412c`](https://github.com/0xmortuex/MortOS/commit/316412c) | Enforced X.509 roles and identity: CA/leaf BasicConstraints, keyCertSign/digitalSignature usage, serverAuth EKU, DNS or IPv4 SAN matching, duplicate-role rejection, and fail-closed unknown critical extensions. |
 
 ## Demonstrated results
 
@@ -106,6 +107,7 @@ This is the public implementation record for the hardware work integrated into M
 - The authenticated-HTTPS checkpoint completed 28/28 browser assertions and 32/32 smoke assertions, with the host inspecting the encrypted GET and Vex rendering the authenticated response marker.
 - The HTTPS trust-management checkpoint completed 29/29 browser assertions and 32/32 smoke assertions, including reboot persistence followed by an explicit Settings clear.
 - The chain-anchor checkpoint completed 29/29 browser assertions and 32/32 smoke assertions; a renewed leaf/key under the same pinned CA remained trusted only after full issuer-signature verification.
+- The strict X.509-policy checkpoint kept the live browser gate at 29/29 and expanded boot/crypto/security validation to 33/33 assertions.
 
 ## What this does not claim
 
