@@ -68,6 +68,8 @@ This is the public implementation record for the hardware work integrated into M
 | [`f36c5fb`](https://github.com/0xmortuex/MortOS/commit/f36c5fb) | Added strict shared HTTP/1.0/1.1 status-line parsing for normal responses and redirects, rejecting unsupported versions, non-decimal codes, and missing separators before body rendering. |
 | [`32aeb7e`](https://github.com/0xmortuex/MortOS/commit/32aeb7e) | Added four persistent named Vex session snapshots, private-mode save refusal, a Saved Sessions page, command-bar save/open/delete workflows, and case-insensitive on-device History search. |
 | [`76dc419`](https://github.com/0xmortuex/MortOS/commit/76dc419) | Added a native reading layout and eight persistent per-origin profiles for reading mode and extracted-link policy, enforced private-mode non-persistence, and repaired alias-unsafe reload so saved controls reapply on a real refresh. |
+| [`c0aa1ca`](https://github.com/0xmortuex/MortOS/commit/c0aa1ca) | Hardened HTTP message framing with line-anchored header recognition, bounded decimal Content-Length parsing, duplicate/ambiguous framing rejection, and truncated-body refusal before rendering. |
+| [`eb933c7`](https://github.com/0xmortuex/MortOS/commit/eb933c7) | Completed browser-data clearing for download metadata, named sessions, and per-site profiles through Settings and the command bar, with private-mode refusal and preservation of downloaded MortFS files. |
 
 ## Demonstrated results
 
@@ -128,6 +130,8 @@ This is the public implementation record for the hardware work integrated into M
 - The strict HTTP status checkpoint completed 49/49 live browser assertions and 33/33 boot/crypto/security assertions; a malicious `2A0` status was rejected before its body reached the renderer.
 - The named-session and searchable-History checkpoint completed 53/53 live browser assertions and 33/33 boot/crypto/security assertions, including private-tab save refusal and full session-library reboot recovery.
 - The reading/site-control checkpoint completed 57/57 live browser assertions and 33/33 boot/crypto/security assertions, including origin-scoped link blocking, alias-safe reload, preference reapplication, and full reboot recovery.
+- The HTTP framing checkpoint completed 59/59 live browser assertions and 33/33 boot/crypto/security assertions, including live ambiguous-framing and truncated-body attacks whose markers never reached the renderer.
+- The browser-data checkpoint completed 61/61 live browser assertions and 33/33 boot/crypto/security assertions; direct post-shutdown MortFS inspection proved all three clears persisted while exact downloaded files remained intact.
 
 ## What this does not claim
 
