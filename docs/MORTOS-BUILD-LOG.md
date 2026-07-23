@@ -37,6 +37,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`28e6ceb`](https://github.com/0xmortuex/MortOS/commit/28e6ceb) | Added TLS 1.3 Finished-key derivation and constant-time server Finished verification in Mort, checked against the RFC 8448 transcript through CertificateVerify and its published verify-data value. |
 | [`25e1691`](https://github.com/0xmortuex/MortOS/commit/25e1691) | Closed four hostile-input bounds bugs: overflow-safe chunk-size decoding, validated IPv4/TCP lengths before receive arithmetic, persisted history-index validation/string termination, and complete USB descriptor bounds checks. |
 | [`58797d1`](https://github.com/0xmortuex/MortOS/commit/58797d1) | Added a bounded TLS handshake-stream reassembler that handles split headers, split bodies, and coalesced messages independently of encrypted-record boundaries. |
+| [`9495694`](https://github.com/0xmortuex/MortOS/commit/9495694) | Added canonical DER framing and bounded TLS 1.3 Certificate-list parsing, rejecting indefinite/non-minimal lengths, truncation, trailing bytes, malformed signatures, oversized chains, and entry/extension mismatches. |
 
 ## Demonstrated results
 
@@ -69,6 +70,7 @@ This is the public implementation record for the hardware work integrated into M
 - The Finished-verification checkpoint completed 19/19 smoke assertions against the RFC 8448 server Finished value.
 - The input-hardening checkpoint completed 21/21 boot assertions plus the full 24/24 browser and 13/13 USB hot-plug regressions.
 - The handshake-reassembly checkpoint rejects oversized messages and reconstructs fragmented/coalesced messages inside the booted kernel.
+- The certificate-container checkpoint completed 22/22 smoke assertions with valid extraction and malformed-DER/list rejection.
 
 ## What this does not claim
 
