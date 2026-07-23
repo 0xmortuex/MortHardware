@@ -51,6 +51,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`1cff8ad`](https://github.com/0xmortuex/MortOS/commit/1cff8ad) | Added live protected-handshake processing: strict optional compatibility-CCS validation, ChaCha20-Poly1305 record authentication/decryption, sequence tracking, handshake-stream feed, and required EncryptedExtensions; Vex now advertises only its implemented RSA-PSS authentication scheme. |
 | [`fd12701`](https://github.com/0xmortuex/MortOS/commit/fd12701) | Verified the complete live TLS server flight: bounded transcript accumulation, leaf certificate DER/RSA/RTC-validity checks, RSA-PSS CertificateVerify verification, and server Finished verification; chain trust remains fail-closed. |
 | [`e3c8e00`](https://github.com/0xmortuex/MortOS/commit/e3c8e00) | Added an explicit trust-on-first-use workflow for private HTTPS: SHA-256 leaf fingerprints are scoped to host and port, saved in MortFS only after `K` approval, compared in constant time, and never persisted from private mode. |
+| [`6a59ad8`](https://github.com/0xmortuex/MortOS/commit/6a59ad8) | Completed the pinned TLS client handshake: live master/application secrets and traffic keys, encrypted client Finished, host-confirmed handshake completion, sequence-zero application state, prompt close of untrusted connections, and key cleanup on failure. |
 
 ## Demonstrated results
 
@@ -97,6 +98,7 @@ This is the public implementation record for the hardware work integrated into M
 - The protected-handshake checkpoint again completed 25/25 browser assertions and 32/32 smoke assertions while keeping certificate trust fail-closed.
 - The server-flight checkpoint completed 25/25 browser assertions and 32/32 smoke assertions with live CertificateVerify and Finished authentication.
 - The certificate-pin checkpoint completed 27/27 browser assertions and 32/32 smoke assertions, including private-mode refusal and reboot persistence.
+- The pinned client-handshake checkpoint completed 28/28 browser assertions and 32/32 smoke assertions, including confirmation from the host TLS implementation.
 
 ## What this does not claim
 
