@@ -35,6 +35,8 @@ This is the public implementation record for the hardware work integrated into M
 | [`072fd88`](https://github.com/0xmortuex/MortOS/commit/072fd88) | Implemented the TLS 1.3 post-hello key schedule in Mort: X25519 agreement with all-zero rejection, handshake/client/server traffic secrets, and directional write keys and IVs, verified against RFC 8448. |
 | [`3d28000`](https://github.com/0xmortuex/MortOS/commit/3d28000) | Added full-size ChaCha20-Poly1305 TLS record authentication/decryption, sequence-number nonce construction, inner-content decoding, and a fail-closed forged-tag test that proves plaintext is not released before authentication. |
 | [`28e6ceb`](https://github.com/0xmortuex/MortOS/commit/28e6ceb) | Added TLS 1.3 Finished-key derivation and constant-time server Finished verification in Mort, checked against the RFC 8448 transcript through CertificateVerify and its published verify-data value. |
+| [`25e1691`](https://github.com/0xmortuex/MortOS/commit/25e1691) | Closed four hostile-input bounds bugs: overflow-safe chunk-size decoding, validated IPv4/TCP lengths before receive arithmetic, persisted history-index validation/string termination, and complete USB descriptor bounds checks. |
+| [`58797d1`](https://github.com/0xmortuex/MortOS/commit/58797d1) | Added a bounded TLS handshake-stream reassembler that handles split headers, split bodies, and coalesced messages independently of encrypted-record boundaries. |
 
 ## Demonstrated results
 
@@ -65,6 +67,8 @@ This is the public implementation record for the hardware work integrated into M
 - The handshake-keys checkpoint completed 16/16 smoke assertions with independent guest-memory checks of the RFC 8448 handshake secret, server traffic secret, write key, and IV.
 - The encrypted-record checkpoint completed 18/18 smoke assertions, covering forged-tag rejection and authenticated recovery of a TLS 1.3 handshake payload.
 - The Finished-verification checkpoint completed 19/19 smoke assertions against the RFC 8448 server Finished value.
+- The input-hardening checkpoint completed 21/21 boot assertions plus the full 24/24 browser and 13/13 USB hot-plug regressions.
+- The handshake-reassembly checkpoint rejects oversized messages and reconstructs fragmented/coalesced messages inside the booted kernel.
 
 ## What this does not claim
 
