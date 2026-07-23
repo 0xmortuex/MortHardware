@@ -38,6 +38,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`25e1691`](https://github.com/0xmortuex/MortOS/commit/25e1691) | Closed four hostile-input bounds bugs: overflow-safe chunk-size decoding, validated IPv4/TCP lengths before receive arithmetic, persisted history-index validation/string termination, and complete USB descriptor bounds checks. |
 | [`58797d1`](https://github.com/0xmortuex/MortOS/commit/58797d1) | Added a bounded TLS handshake-stream reassembler that handles split headers, split bodies, and coalesced messages independently of encrypted-record boundaries. |
 | [`9495694`](https://github.com/0xmortuex/MortOS/commit/9495694) | Added canonical DER framing and bounded TLS 1.3 Certificate-list parsing, rejecting indefinite/non-minimal lengths, truncation, trailing bytes, malformed signatures, oversized chains, and entry/extension mismatches. |
+| [`c51791f`](https://github.com/0xmortuex/MortOS/commit/c51791f) | Added strict X.509 Subject Alternative Name DNS matching with case folding, DNS-label syntax validation, and single-leftmost-label wildcard rules; embedded and broad top-level wildcards are rejected. |
 
 ## Demonstrated results
 
@@ -71,6 +72,7 @@ This is the public implementation record for the hardware work integrated into M
 - The input-hardening checkpoint completed 21/21 boot assertions plus the full 24/24 browser and 13/13 USB hot-plug regressions.
 - The handshake-reassembly checkpoint rejects oversized messages and reconstructs fragmented/coalesced messages inside the booted kernel.
 - The certificate-container checkpoint completed 22/22 smoke assertions with valid extraction and malformed-DER/list rejection.
+- The certificate-hostname checkpoint completed 23/23 smoke assertions across exact, wildcard, multi-label, malformed-label, and overbroad-pattern cases.
 
 ## What this does not claim
 
