@@ -52,6 +52,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`fd12701`](https://github.com/0xmortuex/MortOS/commit/fd12701) | Verified the complete live TLS server flight: bounded transcript accumulation, leaf certificate DER/RSA/RTC-validity checks, RSA-PSS CertificateVerify verification, and server Finished verification; chain trust remains fail-closed. |
 | [`e3c8e00`](https://github.com/0xmortuex/MortOS/commit/e3c8e00) | Added an explicit trust-on-first-use workflow for private HTTPS: SHA-256 leaf fingerprints are scoped to host and port, saved in MortFS only after `K` approval, compared in constant time, and never persisted from private mode. |
 | [`6a59ad8`](https://github.com/0xmortuex/MortOS/commit/6a59ad8) | Completed the pinned TLS client handshake: live master/application secrets and traffic keys, encrypted client Finished, host-confirmed handshake completion, sequence-zero application state, prompt close of untrusted connections, and key cleanup on failure. |
+| [`bd417cf`](https://github.com/0xmortuex/MortOS/commit/bd417cf) | Enabled authenticated pinned HTTPS pages: encrypted GET requests, application-record authentication/decryption, bounded NewSessionTicket handling, safe HTTP accumulation/rendering, HTTPS UI state, application-key cleanup, and FIN-safe delivery of the final TLS record. |
 
 ## Demonstrated results
 
@@ -99,6 +100,7 @@ This is the public implementation record for the hardware work integrated into M
 - The server-flight checkpoint completed 25/25 browser assertions and 32/32 smoke assertions with live CertificateVerify and Finished authentication.
 - The certificate-pin checkpoint completed 27/27 browser assertions and 32/32 smoke assertions, including private-mode refusal and reboot persistence.
 - The pinned client-handshake checkpoint completed 28/28 browser assertions and 32/32 smoke assertions, including confirmation from the host TLS implementation.
+- The authenticated-HTTPS checkpoint completed 28/28 browser assertions and 32/32 smoke assertions, with the host inspecting the encrypted GET and Vex rendering the authenticated response marker.
 
 ## What this does not claim
 
