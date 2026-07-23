@@ -40,6 +40,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`9495694`](https://github.com/0xmortuex/MortOS/commit/9495694) | Added canonical DER framing and bounded TLS 1.3 Certificate-list parsing, rejecting indefinite/non-minimal lengths, truncation, trailing bytes, malformed signatures, oversized chains, and entry/extension mismatches. |
 | [`c51791f`](https://github.com/0xmortuex/MortOS/commit/c51791f) | Added strict X.509 Subject Alternative Name DNS matching with case folding, DNS-label syntax validation, and single-leftmost-label wildcard rules; embedded and broad top-level wildcards are rejected. |
 | [`b8289e8`](https://github.com/0xmortuex/MortOS/commit/b8289e8) | Added structural TBSCertificate traversal and extraction of canonical serial, validity, SubjectPublicKeyInfo, and extensions; UTCTime/GeneralizedTime receive calendar/leap-year checks and SAN is located by OID. |
+| [`80c760e`](https://github.com/0xmortuex/MortOS/commit/80c760e) | Added fail-closed certificate-time validation against a stable full CMOS date, handling BCD/binary and 12/24-hour RTC modes while rejecting missing centuries, impossible dates, and unstable update windows. |
 
 ## Demonstrated results
 
@@ -75,6 +76,7 @@ This is the public implementation record for the hardware work integrated into M
 - The certificate-container checkpoint completed 22/22 smoke assertions with valid extraction and malformed-DER/list rejection.
 - The certificate-hostname checkpoint completed 23/23 smoke assertions across exact, wildcard, multi-label, malformed-label, and overbroad-pattern cases.
 - The X.509 field checkpoint completed 24/24 smoke assertions with normalized validity, SPKI/extension bounds, and SAN extraction.
+- The RTC-validity checkpoint completed 25/25 smoke assertions with a live full-date read from QEMU CMOS.
 
 ## What this does not claim
 
