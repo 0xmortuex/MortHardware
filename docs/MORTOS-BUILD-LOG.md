@@ -54,6 +54,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`6a59ad8`](https://github.com/0xmortuex/MortOS/commit/6a59ad8) | Completed the pinned TLS client handshake: live master/application secrets and traffic keys, encrypted client Finished, host-confirmed handshake completion, sequence-zero application state, prompt close of untrusted connections, and key cleanup on failure. |
 | [`bd417cf`](https://github.com/0xmortuex/MortOS/commit/bd417cf) | Enabled authenticated pinned HTTPS pages: encrypted GET requests, application-record authentication/decryption, bounded NewSessionTicket handling, safe HTTP accumulation/rendering, HTTPS UI state, application-key cleanup, and FIN-safe delivery of the final TLS record. |
 | [`df3a408`](https://github.com/0xmortuex/MortOS/commit/df3a408) | Added visible HTTPS trust management in Browser Settings, persistent-pin clearing, secure-scheme preservation for relative links, authenticated-page link extraction coverage, and corrected stale UI capability descriptions. |
+| [`11ed913`](https://github.com/0xmortuex/MortOS/commit/11ed913) | Audited and corrected the browser's security claims and live Network status so working pinned HTTPS is distinguished precisely from the still-unimplemented public-CA chain/root-store mode. |
 
 ## Demonstrated results
 
