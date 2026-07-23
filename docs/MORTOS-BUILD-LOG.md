@@ -57,6 +57,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`11ed913`](https://github.com/0xmortuex/MortOS/commit/11ed913) | Audited and corrected the browser's security claims and live Network status so working pinned HTTPS is distinguished precisely from the still-unimplemented public-CA chain/root-store mode. |
 | [`c8f71ab`](https://github.com/0xmortuex/MortOS/commit/c8f71ab) | Added bounded RSA certificate-chain traversal, full-chain RTC validity checks, exact issuer/subject linking, SHA256-with-RSA child-signature verification, final-anchor fingerprint pins, and a renewal regression using two different leaves under one private CA. |
 | [`316412c`](https://github.com/0xmortuex/MortOS/commit/316412c) | Enforced X.509 roles and identity: CA/leaf BasicConstraints, keyCertSign/digitalSignature usage, serverAuth EKU, DNS or IPv4 SAN matching, duplicate-role rejection, and fail-closed unknown critical extensions. |
+| [`52ca551`](https://github.com/0xmortuex/MortOS/commit/52ca551) | Added a bounded per-user MortFS CA-root store, strict self-signed DER import, constant-time anchor lookup, private-mode refusal, Vex Settings import/clear controls, automatic trust across independent leaf renewals, and BasicConstraints path-length enforcement. |
 
 ## Demonstrated results
 
@@ -108,6 +109,7 @@ This is the public implementation record for the hardware work integrated into M
 - The HTTPS trust-management checkpoint completed 29/29 browser assertions and 32/32 smoke assertions, including reboot persistence followed by an explicit Settings clear.
 - The chain-anchor checkpoint completed 29/29 browser assertions and 32/32 smoke assertions; a renewed leaf/key under the same pinned CA remained trusted only after full issuer-signature verification.
 - The strict X.509-policy checkpoint kept the live browser gate at 29/29 and expanded boot/crypto/security validation to 33/33 assertions.
+- The imported-root checkpoint completed 32/32 live browser assertions and 33/33 boot/crypto/security assertions, including host-pin fallback, private-mode import refusal, an independently renewed leaf under the imported CA, reboot persistence, and explicit root clearing.
 
 ## What this does not claim
 
