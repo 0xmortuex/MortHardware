@@ -72,6 +72,8 @@ This is the public implementation record for the hardware work integrated into M
 | [`eb933c7`](https://github.com/0xmortuex/MortOS/commit/eb933c7) | Completed browser-data clearing for download metadata, named sessions, and per-site profiles through Settings and the command bar, with private-mode refusal and preservation of downloaded MortFS files. |
 | [`c1854cf`](https://github.com/0xmortuex/MortOS/commit/c1854cf) | Added automatic full tab-stack recovery for all four Vex workspaces plus a persistent four-item recently closed ring and command/keyboard reopen workflow, while excluding private navigation from the journal. |
 | [`74791f6`](https://github.com/0xmortuex/MortOS/commit/74791f6) | Added the native Vex Library with eight persistent short notes and eight Read Later URLs, a local page and command-bar workflows, clickable reopening, private-mode non-persistence, reboot recovery, and durable data clearing. |
+| [`3759e8e`](https://github.com/0xmortuex/MortOS/commit/3759e8e) | Added persistent per-workspace tab pins and three color groups, duplication and left/right ordering, pinned-tab close protection, and canonical Ctrl+T/W/L/R/F/H/D/Tab/1–4 shortcuts. |
+| [`3e8e9b0`](https://github.com/0xmortuex/MortOS/commit/3e8e9b0) | Completed the feasible native Vex productivity set: note pin/delete/Markdown export, individual Read Later removal, bounded 256×192 BMP framebuffer capture, full private-session state rollback, global app shortcuts from Home, an explicit upstream capability boundary, refreshed screenshots, and modernized full-system regressions. |
 
 ## Demonstrated results
 
@@ -136,6 +138,8 @@ This is the public implementation record for the hardware work integrated into M
 - The browser-data checkpoint completed 61/61 live browser assertions and 33/33 boot/crypto/security assertions; direct post-shutdown MortFS inspection proved all three clears persisted while exact downloaded files remained intact.
 - The workspace-journal checkpoint completed 64/64 live browser assertions and 33/33 boot/crypto/security assertions, including multi-entry LIFO reopen, all-workspace recovery, and reopening a closed tab after a full reboot.
 - The Notes/Read Later checkpoint completed 67/67 live browser assertions and 33/33 boot/crypto/security assertions, including exact record contents, private-mode refusal, full reboot recovery, clickable local-library integration, and direct post-shutdown proof that clearing both collections persisted.
+- The tab-organization checkpoint completed 70/70 live browser assertions and 33/33 boot/crypto/security assertions, including persistent pin/group metadata, duplicate/reorder behavior, and canonical shortcut routing.
+- The final native-productivity checkpoint completed 75/75 browser, 33/33 smoke, 7/7 Settings, 13/13 USB hot-plug, 9/9 graphics, 23/23 filesystem, and 11/11 compiled-program assertions. It verified private-state rollback, exact BMP/Markdown files, downloaded-file preservation, Home-to-app function keys, per-user filesystem permissions, and `/bin` execution.
 
 ## What this does not claim
 
