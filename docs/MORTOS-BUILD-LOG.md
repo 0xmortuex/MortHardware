@@ -53,6 +53,7 @@ This is the public implementation record for the hardware work integrated into M
 | [`e3c8e00`](https://github.com/0xmortuex/MortOS/commit/e3c8e00) | Added an explicit trust-on-first-use workflow for private HTTPS: SHA-256 leaf fingerprints are scoped to host and port, saved in MortFS only after `K` approval, compared in constant time, and never persisted from private mode. |
 | [`6a59ad8`](https://github.com/0xmortuex/MortOS/commit/6a59ad8) | Completed the pinned TLS client handshake: live master/application secrets and traffic keys, encrypted client Finished, host-confirmed handshake completion, sequence-zero application state, prompt close of untrusted connections, and key cleanup on failure. |
 | [`bd417cf`](https://github.com/0xmortuex/MortOS/commit/bd417cf) | Enabled authenticated pinned HTTPS pages: encrypted GET requests, application-record authentication/decryption, bounded NewSessionTicket handling, safe HTTP accumulation/rendering, HTTPS UI state, application-key cleanup, and FIN-safe delivery of the final TLS record. |
+| [`df3a408`](https://github.com/0xmortuex/MortOS/commit/df3a408) | Added visible HTTPS trust management in Browser Settings, persistent-pin clearing, secure-scheme preservation for relative links, authenticated-page link extraction coverage, and corrected stale UI capability descriptions. |
 
 ## Demonstrated results
 
@@ -101,6 +102,7 @@ This is the public implementation record for the hardware work integrated into M
 - The certificate-pin checkpoint completed 27/27 browser assertions and 32/32 smoke assertions, including private-mode refusal and reboot persistence.
 - The pinned client-handshake checkpoint completed 28/28 browser assertions and 32/32 smoke assertions, including confirmation from the host TLS implementation.
 - The authenticated-HTTPS checkpoint completed 28/28 browser assertions and 32/32 smoke assertions, with the host inspecting the encrypted GET and Vex rendering the authenticated response marker.
+- The HTTPS trust-management checkpoint completed 29/29 browser assertions and 32/32 smoke assertions, including reboot persistence followed by an explicit Settings clear.
 
 ## What this does not claim
 
